@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07152e">
+  <title>Sigma Institute of Education</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #07152e;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 7%;
+      background: #0b1d3a;
+      border-bottom: 1px solid #d4af37;
+    }
+
+    .logo {
+      color: #f2cc62;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 16px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 20px;
+      background:
+        radial-gradient(ellipse at top, #183d70 0%, #07152e 65%);
+    }
+
+    .hero-content {
+      max-width: 850px;
+      animation: appear 1s ease;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid #d4af37;
+      border-radius: 30px;
+      color: #f2cc62;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #f2cc62;
+      text-shadow: 0 0 25px #d4af3744;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #f6d879, #b58a24);
+      color: #07152e;
+      padding: 14px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 5px;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    section {
+      padding: 65px 7%;
+      text-align: center;
+    }
+
+    section h2 {
+      color: #f2cc62;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      margin-bottom: 35px;
+      line-height: 1.7;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+    }
+
+    .course {
+      background: linear-gradient(145deg, #132c50, #0b1a34);
+      border: 1px solid #c6a34a55;
+      padding: 28px 12px;
+      border-radius: 14px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .course:hover {
+      transform: translateY(-7px);
+      border-color: #f2cc62;
+    }
+
+    .course h3 {
+      color: #f2cc62;
+      margin-bottom: 10px;
+    }
+
+    .course p {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .about {
+      background: #0b1d3a;
+      line-height: 1.9;
+      color: #dbe5f4;
+    }
+
+    .contact-box {
+      max-width: 650px;
+      margin: auto;
+      padding: 30px;
+      background: #102544;
+      border: 1px solid #d4af3755;
+      border-radius: 16px;
+      line-height: 2;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 25px 15px;
+      text-align: center;
+      background: #040c1b;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .hero {
+        min-height: 70vh;
+      }
+
+      section {
+        padding: 50px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">SIGMA INSTITUTE</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="badge">✦ ADMISSION OPEN 2026–27 ✦</div>
+
+        <h1>
+          SIGMA INSTITUTE<br>
+          <span>OF EDUCATION</span>
+        </h1>
+
+        <p>
+          शिक्षा, कौशल और उज्ज्वल भविष्य की ओर एक कदम।<br>
+          अपने सपनों को नई दिशा दें और अपने भविष्य का निर्माण करें।
+        </p>
+
+        <a class="btn" href="#courses">Explore Courses</a>
+        <a class="btn" href="#contact">Contact Us</a>
+      </div>
+    </section>
+
+    <section id="courses">
+      <h2>Our Courses</h2>
+      <p class="subtitle">
+        अपने भविष्य के लिए सही कोर्स चुनें।
+        कोर्स की उपलब्धता संस्थान से सत्यापित करें।
+      </p>
+
+      <div class="courses">
+        <div class="course">
+          <h3>BA</h3>
+          <p>Bachelor of Arts</p>
+        </div>
+
+        <div class="course">
+          <h3>B.Sc.</h3>
+          <p>Bachelor of Science</p>
+        </div>
+
+        <div class="course">
+          <h3>B.Ed.</h3>
+          <p>Bachelor of Education</p>
+        </div>
+
+        <div class="course">
+          <h3>LLB</h3>
+          <p>Law Programme</p>
+        </div>
+
+        <div class="course">
+          <h3>ITI</h3>
+          <p>Technical Training</p>
+        </div>
+
+        <div class="course">
+          <h3>Polytechnic</h3>
+          <p>Technical Education</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Our Institute</h2>
+      <p>
+        Sigma Institute of Education में हमारा उद्देश्य
+        विद्यार्थियों को शिक्षा और कौशल के माध्यम से आगे बढ़ने
+        के अवसरों की जानकारी देना है।
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p class="subtitle">प्रवेश और कोर्स संबंधी जानकारी के लिए संपर्क करें।</p>
+
+      <div class="contact-box">
+        <strong>Sigma Institute of Education</strong><br>
+        New Patel Nagar, Nearby Jalaun Bypass,<br>
+        Orai, Jalaun, Uttar Pradesh<br>
+        Email: Sigmainstituteofeducation@gmail.com
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Sigma Institute of Education<br>
+    Education • Skills • Future
+  </footer>
+
+</body>
+          </html>
