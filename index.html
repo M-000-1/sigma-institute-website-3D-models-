@@ -1,317 +1,700 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07152e">
-  <title>Sigma Institute of Education</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07152e">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>Sigma Institute of Education</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #07152e;
-      color: white;
-      overflow-x: hidden;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      padding: 20px 7%;
-      background: #0b1d3a;
-      border-bottom: 1px solid #d4af37;
-    }
+:root {
+  --navy: #061329;
+  --blue: #102b52;
+  --gold: #f5d477;
+  --white: #ffffff;
+  --muted: #cbd5e1;
+}
 
-    .logo {
-      color: #f2cc62;
-      font-size: 21px;
-      font-weight: bold;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 16px;
-      font-size: 14px;
-    }
+body {
+  font-family: Arial, sans-serif;
+  color: var(--white);
+  background: var(--navy);
+  overflow-x: hidden;
+}
 
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 70px 20px;
-      background:
-        radial-gradient(ellipse at top, #183d70 0%, #07152e 65%);
-    }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 6%;
+  background: rgba(6, 19, 41, 0.96);
+  border-bottom: 1px solid #f5d47766;
+  position: relative;
+  z-index: 10;
+}
 
-    .hero-content {
-      max-width: 850px;
-      animation: appear 1s ease;
-    }
+.logo {
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
 
-    .badge {
-      display: inline-block;
-      padding: 10px 18px;
-      border: 1px solid #d4af37;
-      border-radius: 30px;
-      color: #f2cc62;
-      margin-bottom: 25px;
-    }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
-    h1 {
-      font-size: clamp(34px, 7vw, 64px);
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-    h1 span {
-      color: #f2cc62;
-      text-shadow: 0 0 25px #d4af3744;
-    }
+nav a:hover {
+  color: var(--gold);
+}
 
-    .hero p {
-      color: #cbd5e1;
-      line-height: 1.8;
-      font-size: 17px;
-      margin-bottom: 30px;
-    }
+/* HERO */
 
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #f6d879, #b58a24);
-      color: #07152e;
-      padding: 14px 25px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      margin: 5px;
-      transition: transform 0.3s;
-    }
+.hero {
+  min-height: 650px;
+  padding: 65px 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  background:
+    radial-gradient(ellipse at 75% 35%, #1b477b 0%, transparent 45%),
+    linear-gradient(135deg, #07152e, #102b52);
+  position: relative;
+  overflow: hidden;
+}
 
-    .btn:hover {
-      transform: translateY(-4px);
-    }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: enter 1s ease both;
+}
 
-    section {
-      padding: 65px 7%;
-      text-align: center;
-    }
+.badge {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
 
-    section h2 {
-      color: #f2cc62;
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
+h1 {
+  font-size: clamp(35px, 5vw, 60px);
+  line-height: 1.13;
+  margin-bottom: 22px;
+}
 
-    .subtitle {
-      color: #cbd5e1;
-      margin-bottom: 35px;
-      line-height: 1.7;
-    }
+h1 span {
+  color: var(--gold);
+  text-shadow: 0 0 25px #f5d47733;
+}
 
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 18px;
-    }
+.hero-content p {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
 
-    .course {
-      background: linear-gradient(145deg, #132c50, #0b1a34);
-      border: 1px solid #c6a34a55;
-      padding: 28px 12px;
-      border-radius: 14px;
-      transition: transform 0.3s, border-color 0.3s;
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 20px;
+  margin: 5px 5px 5px 0;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #07152e;
+  background: linear-gradient(135deg, #ffedac, #d3a83f);
+  font-weight: bold;
+  transition: transform .3s, box-shadow .3s;
+}
 
-    .course:hover {
-      transform: translateY(-7px);
-      border-color: #f2cc62;
-    }
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px #f5d47733;
+}
 
-    .course h3 {
-      color: #f2cc62;
-      margin-bottom: 10px;
-    }
+.btn-outline {
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+}
 
-    .course p {
-      font-size: 13px;
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
+/* CSS 3D CAMPUS */
 
-    .about {
-      background: #0b1d3a;
-      line-height: 1.9;
-      color: #dbe5f4;
-    }
+.campus-scene {
+  width: 100%;
+  max-width: 510px;
+  height: 390px;
+  margin: auto;
+  position: relative;
+  perspective: 1000px;
+  animation: float 5s ease-in-out infinite;
+}
 
-    .contact-box {
-      max-width: 650px;
-      margin: auto;
-      padding: 30px;
-      background: #102544;
-      border: 1px solid #d4af3755;
-      border-radius: 16px;
-      line-height: 2;
-      overflow-wrap: anywhere;
-    }
+.campus-glow {
+  position: absolute;
+  width: 85%;
+  height: 75%;
+  top: 10%;
+  left: 8%;
+  border-radius: 50%;
+  background: #3e8ed533;
+  filter: blur(45px);
+}
 
-    footer {
-      padding: 25px 15px;
-      text-align: center;
-      background: #040c1b;
-      color: #cbd5e1;
-      font-size: 13px;
-      line-height: 1.8;
-    }
+.campus {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(5deg) rotateY(-10deg);
+}
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.building {
+  position: absolute;
+  width: 76%;
+  height: 190px;
+  left: 12%;
+  top: 70px;
+  background: linear-gradient(90deg, #9daec4, #f0e4c5 50%, #c4b58e);
+  border: 2px solid #f5d477;
+  box-shadow: 0 0 30px #0008;
+  transform-style: preserve-3d;
+}
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-      }
+.roof {
+  position: absolute;
+  height: 28px;
+  width: 108%;
+  left: -4%;
+  top: -29px;
+  background: linear-gradient(#ffe7a1, #a78335);
+  border: 1px solid #fff0bb;
+  transform: translateZ(8px);
+}
 
-      nav {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
+.building::before {
+  content: "";
+  position: absolute;
+  right: -38px;
+  top: 10px;
+  width: 38px;
+  height: 180px;
+  background: linear-gradient(90deg, #786943, #3e4c62);
+  transform: skewY(-35deg);
+  transform-origin: left;
+}
 
-      nav a {
-        margin: 0;
-      }
+.building::after {
+  content: "SIGMA INSTITUTE";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 12px;
+  padding: 10px 2px;
+  text-align: center;
+  font-size: clamp(8px, 1.7vw, 14px);
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #f5d477;
+  background: #0b2041;
+  border: 1px solid #d4af37;
+}
 
-      .hero {
-        min-height: 70vh;
-      }
+.columns {
+  position: absolute;
+  top: 64px;
+  left: 8%;
+  right: 8%;
+  height: 115px;
+  display: flex;
+  justify-content: space-around;
+}
 
-      section {
-        padding: 50px 5%;
-      }
-    }
-  </style>
+.column {
+  width: 13%;
+  height: 100%;
+  background: linear-gradient(90deg, #b8a16d, #fff1c4, #a98d51);
+  border: 1px solid #9c8147;
+  box-shadow: 4px 0 5px #0003;
+}
+
+.door {
+  position: absolute;
+  bottom: 0;
+  left: 42%;
+  width: 16%;
+  height: 62px;
+  background: linear-gradient(90deg, #07152e, #27486c);
+  border: 3px solid #d9bd77;
+  border-bottom: 0;
+  border-radius: 25px 25px 0 0;
+}
+
+.windows {
+  position: absolute;
+  bottom: 22px;
+  left: 7%;
+  right: 7%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.window {
+  width: 12%;
+  height: 43px;
+  background: linear-gradient(135deg, #5eb7e8, #102a4e);
+  border: 3px solid #e7d4a1;
+  box-shadow: inset 0 0 10px #fff5;
+}
+
+.ground {
+  position: absolute;
+  width: 105%;
+  height: 95px;
+  left: -2%;
+  top: 260px;
+  background: linear-gradient(135deg, #254d48, #132d37);
+  border: 2px solid #b89a48;
+  transform: rotateX(58deg);
+  transform-origin: top;
+  box-shadow: 0 20px 35px #0005;
+}
+
+.walkway {
+  position: absolute;
+  left: 35%;
+  top: 260px;
+  width: 30%;
+  height: 105px;
+  background: linear-gradient(90deg, #9c9c93, #e6dcbf, #a4a39b);
+  transform: rotateX(58deg);
+  transform-origin: top;
+  z-index: 2;
+}
+
+.campus-label {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* SECTIONS */
+
+section {
+  padding: 75px 6%;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 750px;
+  margin: 0 auto 35px;
+}
+
+/* COURSES */
+
+.courses {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 1000px;
+  margin: auto;
+  perspective: 1000px;
+}
+
+.course {
+  padding: 30px 15px;
+  min-height: 145px;
+  border-radius: 15px;
+  border: 1px solid #f5d47766;
+  background: linear-gradient(145deg, #17375f, #0a1931);
+  box-shadow: 0 10px 25px #0003;
+  transition: transform .35s, border-color .35s, box-shadow .35s;
+}
+
+.course:hover {
+  transform: translateY(-8px) rotateX(4deg);
+  border-color: var(--gold);
+  box-shadow: 0 18px 35px #0005;
+}
+
+.course .icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.course h3 {
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.course p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ABOUT */
+
+.about {
+  background: linear-gradient(135deg, #0c2040, #102b52);
+  line-height: 1.9;
+}
+
+.about-card {
+  max-width: 850px;
+  margin: auto;
+  padding: 30px;
+  border: 1px solid #f5d47755;
+  border-radius: 16px;
+  background: #07152e55;
+  color: var(--muted);
+}
+
+/* CONTACT */
+
+.contact-box {
+  max-width: 650px;
+  margin: auto;
+  padding: 30px;
+  line-height: 2.1;
+  overflow-wrap: anywhere;
+  border: 1px solid #f5d47766;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #17375f, #0a1931);
+}
+
+.contact-box strong {
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.contact-box a {
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
+
+footer {
+  padding: 28px 15px;
+  background: #030a17;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  header {
+    flex-direction: column;
+    padding: 18px 4%;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 5% 35px;
+    text-align: center;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .campus-scene {
+    max-width: 430px;
+    height: 330px;
+  }
+
+  .building {
+    top: 55px;
+    height: 165px;
+  }
+
+  .columns {
+    top: 60px;
+    height: 95px;
+  }
+
+  .door {
+    height: 48px;
+  }
+
+  .windows {
+    bottom: 20px;
+  }
+
+  .window {
+    height: 32px;
+  }
+
+  .ground {
+    top: 225px;
+    height: 80px;
+  }
+
+  .walkway {
+    top: 225px;
+  }
+
+  .campus-label {
+    font-size: 11px;
+  }
+
+  section {
+    padding: 55px 5%;
+  }
+
+  .courses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+
+  .course {
+    padding: 23px 8px;
+  }
+
+  .section-title {
+    font-size: 27px;
+  }
+}
+
+@media (max-width: 360px) {
+  .courses {
+    grid-template-columns: 1fr;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  nav {
+    gap: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">SIGMA INSTITUTE</div>
+<header>
+  <div class="logo">SIGMA INSTITUTE</div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#courses">Courses</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="badge">✦ ADMISSION OPEN 2026–27 ✦</div>
+<main>
 
-        <h1>
-          SIGMA INSTITUTE<br>
-          <span>OF EDUCATION</span>
-        </h1>
+<section class="hero" id="home">
 
-        <p>
-          शिक्षा, कौशल और उज्ज्वल भविष्य की ओर एक कदम।<br>
-          अपने सपनों को नई दिशा दें और अपने भविष्य का निर्माण करें।
-        </p>
+  <div class="hero-content">
+    <div class="badge">✦ ADMISSION OPEN 2026–27 ✦</div>
 
-        <a class="btn" href="#courses">Explore Courses</a>
-        <a class="btn" href="#contact">Contact Us</a>
+    <h1>
+      SIGMA INSTITUTE<br>
+      <span>OF EDUCATION</span>
+    </h1>
+
+    <p>
+      शिक्षा, कौशल और उज्ज्वल भविष्य की ओर एक कदम।<br>
+      अपने सपनों को नई दिशा दें और अपने भविष्य का निर्माण करें।
+    </p>
+
+    <a class="btn" href="#courses">Explore Courses</a>
+    <a class="btn btn-outline" href="#contact">Contact Us</a>
+  </div>
+
+  <div class="campus-scene" aria-label="CSS से बनाया गया 3D स्टाइल कॉलेज कैंपस">
+    <div class="campus-glow"></div>
+
+    <div class="campus">
+      <div class="ground"></div>
+      <div class="walkway"></div>
+
+      <div class="building">
+        <div class="roof"></div>
+
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+
+        <div class="windows">
+          <div class="window"></div>
+          <div class="window"></div>
+          <div class="window"></div>
+          <div class="window"></div>
+          <div class="window"></div>
+        </div>
+
+        <div class="door"></div>
       </div>
-    </section>
+    </div>
 
-    <section id="courses">
-      <h2>Our Courses</h2>
-      <p class="subtitle">
-        अपने भविष्य के लिए सही कोर्स चुनें।
-        कोर्स की उपलब्धता संस्थान से सत्यापित करें।
-      </p>
+    <div class="campus-label">A PLACE FOR LEARNING & GROWTH</div>
+  </div>
 
-      <div class="courses">
-        <div class="course">
-          <h3>BA</h3>
-          <p>Bachelor of Arts</p>
-        </div>
+</section>
 
-        <div class="course">
-          <h3>B.Sc.</h3>
-          <p>Bachelor of Science</p>
-        </div>
+<section id="courses">
+  <h2 class="section-title">Our Courses</h2>
 
-        <div class="course">
-          <h3>B.Ed.</h3>
-          <p>Bachelor of Education</p>
-        </div>
+  <p class="subtitle">
+    अपने भविष्य के लिए सही कोर्स चुनें।
+    प्रवेश और कोर्स की उपलब्धता संस्थान से सत्यापित करें।
+  </p>
 
-        <div class="course">
-          <h3>LLB</h3>
-          <p>Law Programme</p>
-        </div>
+  <div class="courses">
 
-        <div class="course">
-          <h3>ITI</h3>
-          <p>Technical Training</p>
-        </div>
+    <div class="course">
+      <div class="icon">📚</div>
+      <h3>BA</h3>
+      <p>Bachelor of Arts</p>
+    </div>
 
-        <div class="course">
-          <h3>Polytechnic</h3>
-          <p>Technical Education</p>
-        </div>
-      </div>
-    </section>
+    <div class="course">
+      <div class="icon">🔬</div>
+      <h3>B.Sc.</h3>
+      <p>Bachelor of Science</p>
+    </div>
 
-    <section class="about" id="about">
-      <h2>About Our Institute</h2>
-      <p>
-        Sigma Institute of Education में हमारा उद्देश्य
-        विद्यार्थियों को शिक्षा और कौशल के माध्यम से आगे बढ़ने
-        के अवसरों की जानकारी देना है।
-      </p>
-    </section>
+    <div class="course">
+      <div class="icon">🎓</div>
+      <h3>B.Ed.</h3>
+      <p>Bachelor of Education</p>
+    </div>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p class="subtitle">प्रवेश और कोर्स संबंधी जानकारी के लिए संपर्क करें।</p>
+    <div class="course">
+      <div class="icon">⚖️</div>
+      <h3>LLB</h3>
+      <p>Law Programme</p>
+    </div>
 
-      <div class="contact-box">
-        <strong>Sigma Institute of Education</strong><br>
-        New Patel Nagar, Nearby Jalaun Bypass,<br>
-        Orai, Jalaun, Uttar Pradesh<br>
-        Email: Sigmainstituteofeducation@gmail.com
-      </div>
-    </section>
-  </main>
+    <div class="course">
+      <div class="icon">⚙️</div>
+      <h3>ITI</h3>
+      <p>Technical Training</p>
+    </div>
 
-  <footer>
-    © 2026 Sigma Institute of Education<br>
-    Education • Skills • Future
-  </footer>
+    <div class="course">
+      <div class="icon">🏗️</div>
+      <h3>Polytechnic</h3>
+      <p>Technical Education</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2 class="section-title">About Our Institute</h2>
+
+  <div class="about-card">
+    Sigma Institute of Education में हमारा उद्देश्य विद्यार्थियों को
+    शिक्षा और कौशल के माध्यम से आगे बढ़ने के अवसरों की जानकारी देना है।
+
+    <br><br>
+
+    हमारा लक्ष्य विद्यार्थियों को उनके शैक्षणिक और व्यावसायिक भविष्य
+    के लिए सही जानकारी प्राप्त करने में सहायता करना है।
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title">Contact Us</h2>
+
+  <p class="subtitle">
+    प्रवेश और कोर्स संबंधी जानकारी के लिए संपर्क करें।
+  </p>
+
+  <div class="contact-box">
+    <strong>Sigma Institute of Education</strong><br>
+
+    New Patel Nagar, Nearby Jalaun Bypass,<br>
+    Orai, Jalaun, Uttar Pradesh<br>
+
+    Email:
+    <a href="mailto:Sigmainstituteofeducation@gmail.com">
+      Sigmainstituteofeducation@gmail.com
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 Sigma Institute of Education<br>
+  Education • Skills • Future
+</footer>
 
 </body>
-          </html>
+</html>
