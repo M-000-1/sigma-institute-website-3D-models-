@@ -3,697 +3,362 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07152e">
-
-<title>Sigma Institute of Education</title>
-
+<title>Sigma Institute of Education | Admission 2026-27</title>
+<meta name="description" content="Sigma Institute of Education, Madhogarh, Jalaun, Uttar Pradesh. Admission enquiries for 2026-27.">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
-  --navy: #061329;
-  --blue: #102b52;
-  --gold: #f5d477;
-  --white: #ffffff;
-  --muted: #cbd5e1;
+  --navy:#071b3a;
+  --blue:#123f82;
+  --gold:#ffd36a;
+  --white:#ffffff;
+  --light:#edf4ff;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: Arial, sans-serif;
-  color: var(--white);
-  background: var(--navy);
-  overflow-x: hidden;
+  margin:0;
+  font-family:Arial,"Noto Sans Devanagari",sans-serif;
+  color:#14213d;
+  background:var(--light);
+  line-height:1.6;
 }
-
+a { color:inherit; }
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px 6%;
-  background: rgba(6, 19, 41, 0.96);
-  border-bottom: 1px solid #f5d47766;
-  position: relative;
-  z-index: 10;
+  background:var(--navy);
+  color:white;
+  padding:15px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
 }
-
+.brand { display:flex; align-items:center; gap:12px; }
 .logo {
-  color: var(--gold);
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 1px;
+  width:52px;height:52px;border:2px solid var(--gold);
+  border-radius:50%;display:grid;place-items:center;
+  color:var(--gold);font-weight:bold;font-size:20px;
 }
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: var(--gold);
-}
-
-/* HERO */
-
+.brand h2 { margin:0;font-size:18px;line-height:1.3; }
+.brand small { color:#dbe7ff; }
+nav { display:flex;gap:16px;flex-wrap:wrap; }
+nav a { color:white;text-decoration:none;font-size:14px; }
+nav a:hover { color:var(--gold); }
 .hero {
-  min-height: 650px;
-  padding: 65px 6%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 30px;
-  background:
-    radial-gradient(ellipse at 75% 35%, #1b477b 0%, transparent 45%),
-    linear-gradient(135deg, #07152e, #102b52);
-  position: relative;
-  overflow: hidden;
+  background:linear-gradient(135deg,#071b3a,#174d93);
+  color:white;padding:55px 6% 65px;
+  display:grid;grid-template-columns:1.1fr .9fr;
+  gap:35px;align-items:center;overflow:hidden;
 }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  animation: enter 1s ease both;
-}
-
 .badge {
-  display: inline-block;
-  padding: 10px 15px;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  border-radius: 30px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
+  display:inline-block;background:var(--gold);color:#152748;
+  padding:7px 14px;border-radius:30px;font-weight:bold;font-size:13px;
 }
-
-h1 {
-  font-size: clamp(35px, 5vw, 60px);
-  line-height: 1.13;
-  margin-bottom: 22px;
-}
-
-h1 span {
-  color: var(--gold);
-  text-shadow: 0 0 25px #f5d47733;
-}
-
-.hero-content p {
-  color: var(--muted);
-  line-height: 1.9;
-  font-size: 16px;
-  margin-bottom: 25px;
-}
-
+.hero h1 { font-size:clamp(30px,5vw,52px);line-height:1.15;margin:20px 0 14px; }
+.hero h1 span { color:var(--gold); }
+.hero p { color:#e1eaff;max-width:600px; }
+.buttons { display:flex;gap:12px;flex-wrap:wrap;margin-top:25px; }
 .btn {
-  display: inline-block;
-  padding: 14px 20px;
-  margin: 5px 5px 5px 0;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #07152e;
-  background: linear-gradient(135deg, #ffedac, #d3a83f);
-  font-weight: bold;
-  transition: transform .3s, box-shadow .3s;
+  display:inline-block;padding:12px 19px;border-radius:9px;
+  text-decoration:none;font-weight:bold;background:var(--gold);color:#152748;
 }
-
-.btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px #f5d47733;
+.btn.secondary { border:1px solid white;color:white;background:transparent; }
+.scene {
+  height:320px;display:grid;place-items:center;
+  perspective:900px;position:relative;
 }
-
-.btn-outline {
-  color: var(--gold);
-  background: transparent;
-  border: 1px solid var(--gold);
-}
-
-/* CSS 3D CAMPUS */
-
-.campus-scene {
-  width: 100%;
-  max-width: 510px;
-  height: 390px;
-  margin: auto;
-  position: relative;
-  perspective: 1000px;
-  animation: float 5s ease-in-out infinite;
-}
-
-.campus-glow {
-  position: absolute;
-  width: 85%;
-  height: 75%;
-  top: 10%;
-  left: 8%;
-  border-radius: 50%;
-  background: #3e8ed533;
-  filter: blur(45px);
-}
-
 .campus {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transform: rotateX(5deg) rotateY(-10deg);
+  position:relative;width:min(100%,390px);height:235px;
+  transform:rotateY(-12deg) rotateX(4deg);
+  transform-style:preserve-3d;
+  filter:drop-shadow(16px 24px 14px #0005);
+  animation:float 5s ease-in-out infinite;
 }
-
-.building {
-  position: absolute;
-  width: 76%;
-  height: 190px;
-  left: 12%;
-  top: 70px;
-  background: linear-gradient(90deg, #9daec4, #f0e4c5 50%, #c4b58e);
-  border: 2px solid #f5d477;
-  box-shadow: 0 0 30px #0008;
-  transform-style: preserve-3d;
-}
-
-.roof {
-  position: absolute;
-  height: 28px;
-  width: 108%;
-  left: -4%;
-  top: -29px;
-  background: linear-gradient(#ffe7a1, #a78335);
-  border: 1px solid #fff0bb;
-  transform: translateZ(8px);
-}
-
-.building::before {
-  content: "";
-  position: absolute;
-  right: -38px;
-  top: 10px;
-  width: 38px;
-  height: 180px;
-  background: linear-gradient(90deg, #786943, #3e4c62);
-  transform: skewY(-35deg);
-  transform-origin: left;
-}
-
-.building::after {
-  content: "SIGMA INSTITUTE";
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: 12px;
-  padding: 10px 2px;
-  text-align: center;
-  font-size: clamp(8px, 1.7vw, 14px);
-  letter-spacing: 1px;
-  font-weight: bold;
-  color: #f5d477;
-  background: #0b2041;
-  border: 1px solid #d4af37;
-}
-
-.columns {
-  position: absolute;
-  top: 64px;
-  left: 8%;
-  right: 8%;
-  height: 115px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.column {
-  width: 13%;
-  height: 100%;
-  background: linear-gradient(90deg, #b8a16d, #fff1c4, #a98d51);
-  border: 1px solid #9c8147;
-  box-shadow: 4px 0 5px #0003;
-}
-
-.door {
-  position: absolute;
-  bottom: 0;
-  left: 42%;
-  width: 16%;
-  height: 62px;
-  background: linear-gradient(90deg, #07152e, #27486c);
-  border: 3px solid #d9bd77;
-  border-bottom: 0;
-  border-radius: 25px 25px 0 0;
-}
-
-.windows {
-  position: absolute;
-  bottom: 22px;
-  left: 7%;
-  right: 7%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.window {
-  width: 12%;
-  height: 43px;
-  background: linear-gradient(135deg, #5eb7e8, #102a4e);
-  border: 3px solid #e7d4a1;
-  box-shadow: inset 0 0 10px #fff5;
-}
-
-.ground {
-  position: absolute;
-  width: 105%;
-  height: 95px;
-  left: -2%;
-  top: 260px;
-  background: linear-gradient(135deg, #254d48, #132d37);
-  border: 2px solid #b89a48;
-  transform: rotateX(58deg);
-  transform-origin: top;
-  box-shadow: 0 20px 35px #0005;
-}
-
-.walkway {
-  position: absolute;
-  left: 35%;
-  top: 260px;
-  width: 30%;
-  height: 105px;
-  background: linear-gradient(90deg, #9c9c93, #e6dcbf, #a4a39b);
-  transform: rotateX(58deg);
-  transform-origin: top;
-  z-index: 2;
-}
-
-.campus-label {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: var(--gold);
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-/* SECTIONS */
-
-section {
-  padding: 75px 6%;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 32px;
-  color: var(--gold);
-  margin-bottom: 15px;
-}
-
-.subtitle {
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 750px;
-  margin: 0 auto 35px;
-}
-
-/* COURSES */
-
-.courses {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  max-width: 1000px;
-  margin: auto;
-  perspective: 1000px;
-}
-
-.course {
-  padding: 30px 15px;
-  min-height: 145px;
-  border-radius: 15px;
-  border: 1px solid #f5d47766;
-  background: linear-gradient(145deg, #17375f, #0a1931);
-  box-shadow: 0 10px 25px #0003;
-  transition: transform .35s, border-color .35s, box-shadow .35s;
-}
-
-.course:hover {
-  transform: translateY(-8px) rotateX(4deg);
-  border-color: var(--gold);
-  box-shadow: 0 18px 35px #0005;
-}
-
-.course .icon {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
-
-.course h3 {
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-
-.course p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-/* ABOUT */
-
-.about {
-  background: linear-gradient(135deg, #0c2040, #102b52);
-  line-height: 1.9;
-}
-
-.about-card {
-  max-width: 850px;
-  margin: auto;
-  padding: 30px;
-  border: 1px solid #f5d47755;
-  border-radius: 16px;
-  background: #07152e55;
-  color: var(--muted);
-}
-
-/* CONTACT */
-
-.contact-box {
-  max-width: 650px;
-  margin: auto;
-  padding: 30px;
-  line-height: 2.1;
-  overflow-wrap: anywhere;
-  border: 1px solid #f5d47766;
-  border-radius: 16px;
-  background: linear-gradient(145deg, #17375f, #0a1931);
-}
-
-.contact-box strong {
-  color: var(--gold);
-  font-size: 20px;
-}
-
-.contact-box a {
-  color: var(--gold);
-  overflow-wrap: anywhere;
-}
-
-footer {
-  padding: 28px 15px;
-  background: #030a17;
-  color: var(--muted);
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.9;
-}
-
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,100% { transform:rotateY(-12deg) rotateX(4deg) translateY(0); }
+  50% { transform:rotateY(-8deg) rotateX(2deg) translateY(-9px); }
 }
-
-@keyframes enter {
-  from {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.roof {
+  position:absolute;top:0;left:5%;width:90%;height:35px;
+  background:#f5c65f;transform:skewY(-4deg);
+  border:2px solid #fff0b9;
 }
-
-@media (max-width: 760px) {
-  header {
-    flex-direction: column;
-    padding: 18px 4%;
-  }
-
-  nav {
-    justify-content: center;
-    gap: 15px;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    padding: 55px 5% 35px;
-    text-align: center;
-  }
-
-  .hero-content p {
-    font-size: 15px;
-  }
-
-  .campus-scene {
-    max-width: 430px;
-    height: 330px;
-  }
-
-  .building {
-    top: 55px;
-    height: 165px;
-  }
-
-  .columns {
-    top: 60px;
-    height: 95px;
-  }
-
-  .door {
-    height: 48px;
-  }
-
-  .windows {
-    bottom: 20px;
-  }
-
-  .window {
-    height: 32px;
-  }
-
-  .ground {
-    top: 225px;
-    height: 80px;
-  }
-
-  .walkway {
-    top: 225px;
-  }
-
-  .campus-label {
-    font-size: 11px;
-  }
-
-  section {
-    padding: 55px 5%;
-  }
-
-  .courses {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px;
-  }
-
-  .course {
-    padding: 23px 8px;
-  }
-
-  .section-title {
-    font-size: 27px;
-  }
+.building {
+  position:absolute;top:30px;left:8%;width:84%;height:155px;
+  background:linear-gradient(90deg,#d9e7f8,#ffffff 50%,#bfd3f0);
+  border:4px solid #d5b15a;
 }
-
-@media (max-width: 360px) {
-  .courses {
-    grid-template-columns: 1fr;
-  }
-
-  .logo {
-    font-size: 17px;
-  }
-
-  nav {
-    gap: 11px;
-  }
+.building h3 {
+  margin:9px 0;text-align:center;font-size:13px;
+  color:#12345f;letter-spacing:1px;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+.windows {
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:9px;padding:7px 15px;
+}
+.windows i {
+  display:block;height:36px;background:linear-gradient(135deg,#1c477b,#7cbce9);
+  border:3px solid #e8d6a0;border-radius:3px;
+}
+.door {
+  position:absolute;bottom:0;left:43%;width:14%;height:48px;
+  background:#16375e;border:3px solid #e4c36c;border-bottom:0;
+}
+.steps {
+  position:absolute;bottom:0;left:30%;width:40%;height:18px;
+  background:#d9dfe9;transform:translateZ(12px);
+  box-shadow:0 7px 0 #b2bfd2,0 14px 0 #8d9cb3;
+}
+.ground {
+  position:absolute;bottom:-30px;left:0;width:100%;height:20px;
+  background:#43845e;transform:rotateX(55deg);
+}
+.section { padding:55px 6%; }
+.section-title { text-align:center;margin-bottom:30px; }
+.section-title h2 { color:var(--navy);font-size:30px;margin:0 0 8px; }
+.section-title p { margin:0;color:#59677e; }
+.cards {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+}
+.card {
+  background:white;padding:23px;border-radius:15px;
+  box-shadow:0 8px 25px #102b5012;border:1px solid #dfe8f7;
+  transition:transform .25s,box-shadow .25s;
+}
+.card:hover { transform:translateY(-6px);box-shadow:0 15px 30px #102b5020; }
+.icon { font-size:32px; }
+.card h3 { margin:8px 0;color:#123f82; }
+.about {
+  background:white;display:grid;grid-template-columns:1fr 1fr;
+  gap:30px;align-items:center;
+}
+.about-box {
+  padding:25px;border-radius:16px;
+  background:linear-gradient(135deg,#0b2750,#1a5295);color:white;
+}
+.about-box h3 { color:var(--gold);margin-top:0; }
+ul { padding-left:22px; }
+.contact-grid {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
+}
+.contact-item {
+  background:white;padding:20px;border-radius:12px;
+  border-left:4px solid #e9b849;overflow-wrap:anywhere;
+}
+.contact-item h3 { margin:0 0 8px;color:#123f82; }
+.contact-item a { color:#123f82; }
+.note { font-size:13px;color:#65728a; }
+.cta {
+  background:linear-gradient(120deg,#123f82,#071b3a);
+  color:white;text-align:center;padding:40px 6%;
+}
+.cta h2 { margin-top:0; }
+footer {
+  background:#041329;color:#d6e1f3;text-align:center;
+  padding:22px 6%;font-size:13px;
+}
+footer p { margin:5px; }
+@media(max-width:760px) {
+  header { padding:14px 5%; }
+  nav { gap:12px; }
+  .hero { grid-template-columns:1fr;padding:40px 5%; }
+  .scene { height:270px; }
+  .campus { transform:scale(.88); }
+  .cards { grid-template-columns:1fr; }
+  .about { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .section { padding:42px 5%; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">SIGMA INSTITUTE</div>
-
+  <div class="brand">
+    <div class="logo">SIG</div>
+    <div>
+      <h2>SIGMA INSTITUTE<br>OF EDUCATION</h2>
+      <small>Madhogarh, Jalaun, Uttar Pradesh</small>
+    </div>
+  </div>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#courses">Courses</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#home">होम</a>
+    <a href="#about">हमारे बारे में</a>
+    <a href="#courses">कोर्स</a>
+    <a href="#contact">संपर्क</a>
   </nav>
 </header>
 
 <main>
-
 <section class="hero" id="home">
-
-  <div class="hero-content">
-    <div class="badge">✦ ADMISSION OPEN 2026–27 ✦</div>
-
-    <h1>
-      SIGMA INSTITUTE<br>
-      <span>OF EDUCATION</span>
-    </h1>
-
+  <div>
+    <span class="badge">🎓 ADMISSION OPEN 2026–27</span>
+    <h1>आपके उज्ज्वल भविष्य की <span>नई शुरुआत</span></h1>
     <p>
-      शिक्षा, कौशल और उज्ज्वल भविष्य की ओर एक कदम।<br>
-      अपने सपनों को नई दिशा दें और अपने भविष्य का निर्माण करें।
+      Sigma Institute of Education में आपका स्वागत है।
+      शिक्षा, कौशल और बेहतर भविष्य की दिशा में अपना अगला कदम बढ़ाएँ।
     </p>
-
-    <a class="btn" href="#courses">Explore Courses</a>
-    <a class="btn btn-outline" href="#contact">Contact Us</a>
+    <div class="buttons">
+      <a class="btn" href="#contact">प्रवेश के लिए संपर्क करें</a>
+      <a class="btn secondary" href="#courses">कोर्स देखें</a>
+    </div>
   </div>
 
-  <div class="campus-scene" aria-label="CSS से बनाया गया 3D स्टाइल कॉलेज कैंपस">
-    <div class="campus-glow"></div>
-
+  <div class="scene" aria-label="कॉलेज भवन का 3D स्टाइल चित्र">
     <div class="campus">
-      <div class="ground"></div>
-      <div class="walkway"></div>
-
+      <div class="roof"></div>
       <div class="building">
-        <div class="roof"></div>
-
-        <div class="columns">
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column"></div>
-        </div>
-
+        <h3>SIGMA INSTITUTE OF EDUCATION</h3>
         <div class="windows">
-          <div class="window"></div>
-          <div class="window"></div>
-          <div class="window"></div>
-          <div class="window"></div>
-          <div class="window"></div>
+          <i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i>
         </div>
-
         <div class="door"></div>
       </div>
+      <div class="steps"></div>
+      <div class="ground"></div>
     </div>
-
-    <div class="campus-label">A PLACE FOR LEARNING & GROWTH</div>
   </div>
-
 </section>
 
-<section id="courses">
-  <h2 class="section-title">Our Courses</h2>
-
-  <p class="subtitle">
-    अपने भविष्य के लिए सही कोर्स चुनें।
-    प्रवेश और कोर्स की उपलब्धता संस्थान से सत्यापित करें।
-  </p>
-
-  <div class="courses">
-
-    <div class="course">
-      <div class="icon">📚</div>
-      <h3>BA</h3>
-      <p>Bachelor of Arts</p>
+<section class="section" id="about">
+  <div class="section-title">
+    <h2>हमारे संस्थान के बारे में</h2>
+    <p>शिक्षा और कौशल के माध्यम से आगे बढ़ने का अवसर</p>
+  </div>
+  <div class="about">
+    <div>
+      <h3>Sigma Institute of Education</h3>
+      <p>
+        हमारा उद्देश्य विद्यार्थियों को शिक्षा और कौशल विकास के
+        अवसरों के बारे में जानकारी उपलब्ध कराना है।
+        प्रवेश, फीस, छात्रवृत्ति और पात्रता की जानकारी संस्थान से
+        संपर्क करके अवश्य प्राप्त करें।
+      </p>
+      <ul>
+        <li>कोर्स और प्रवेश संबंधी जानकारी</li>
+        <li>विद्यार्थियों के लिए मार्गदर्शन</li>
+        <li>छात्रवृत्ति की पात्रता संबंधी जानकारी</li>
+      </ul>
     </div>
+    <div class="about-box">
+      <h3>Admission 2026–27</h3>
+      <p>अपने पसंदीदा कोर्स और प्रवेश की उपलब्धता के बारे में पूछें।</p>
+      <p>📍 Madhogarh, District Jalaun, Uttar Pradesh</p>
+      <a class="btn" href="#contact">संपर्क विवरण देखें</a>
+    </div>
+  </div>
+</section>
 
-    <div class="course">
+<section class="section" id="courses">
+  <div class="section-title">
+    <h2>हमारे कोर्स</h2>
+    <p>कोर्स की उपलब्धता और मान्यता संस्थान से सत्यापित करें।</p>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <div class="icon">🎓</div>
+      <h3>B.A.</h3>
+      <p>बैचलर ऑफ आर्ट्स से संबंधित प्रवेश जानकारी।</p>
+    </article>
+    <article class="card">
       <div class="icon">🔬</div>
       <h3>B.Sc.</h3>
-      <p>Bachelor of Science</p>
-    </div>
-
-    <div class="course">
-      <div class="icon">🎓</div>
+      <p>विज्ञान विषयों के पाठ्यक्रम की जानकारी।</p>
+    </article>
+    <article class="card">
+      <div class="icon">📘</div>
       <h3>B.Ed.</h3>
-      <p>Bachelor of Education</p>
-    </div>
-
-    <div class="course">
+      <p>शिक्षक प्रशिक्षण पाठ्यक्रम की पात्रता की जानकारी।</p>
+    </article>
+    <article class="card">
       <div class="icon">⚖️</div>
       <h3>LLB</h3>
-      <p>Law Programme</p>
-    </div>
-
-    <div class="course">
-      <div class="icon">⚙️</div>
+      <p>कानून की पढ़ाई से संबंधित प्रवेश जानकारी।</p>
+    </article>
+    <article class="card">
+      <div class="icon">🛠️</div>
       <h3>ITI</h3>
-      <p>Technical Training</p>
-    </div>
-
-    <div class="course">
+      <p>तकनीकी और व्यावसायिक प्रशिक्षण की जानकारी।</p>
+    </article>
+    <article class="card">
+      <div class="icon">💻</div>
+      <h3>Computer Courses</h3>
+      <p>कंप्यूटर प्रशिक्षण कोर्स की उपलब्धता के बारे में पूछें।</p>
+    </article>
+    <article class="card">
       <div class="icon">🏗️</div>
       <h3>Polytechnic</h3>
-      <p>Technical Education</p>
-    </div>
-
+      <p>तकनीकी डिप्लोमा कोर्स की जानकारी प्राप्त करें।</p>
+    </article>
+    <article class="card">
+      <div class="icon">📗</div>
+      <h3>B.Com.</h3>
+      <p>कॉमर्स पाठ्यक्रम की उपलब्धता सत्यापित करें।</p>
+    </article>
+    <article class="card">
+      <div class="icon">📚</div>
+      <h3>अन्य कोर्स</h3>
+      <p>अन्य पाठ्यक्रमों के लिए संस्थान से संपर्क करें।</p>
+    </article>
   </div>
-</section>
-
-<section class="about" id="about">
-  <h2 class="section-title">About Our Institute</h2>
-
-  <div class="about-card">
-    Sigma Institute of Education में हमारा उद्देश्य विद्यार्थियों को
-    शिक्षा और कौशल के माध्यम से आगे बढ़ने के अवसरों की जानकारी देना है।
-
-    <br><br>
-
-    हमारा लक्ष्य विद्यार्थियों को उनके शैक्षणिक और व्यावसायिक भविष्य
-    के लिए सही जानकारी प्राप्त करने में सहायता करना है।
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="section-title">Contact Us</h2>
-
-  <p class="subtitle">
-    प्रवेश और कोर्स संबंधी जानकारी के लिए संपर्क करें।
+  <p class="note">
+    महत्वपूर्ण: वेबसाइट पर सूचीबद्ध कोर्स केवल जानकारी के लिए हैं।
+    प्रवेश लेने से पहले संबंधित कोर्स की वास्तविक उपलब्धता,
+    मान्यता, पात्रता और फीस की पुष्टि करें।
   </p>
+</section>
 
-  <div class="contact-box">
-    <strong>Sigma Institute of Education</strong><br>
-
-    New Patel Nagar, Nearby Jalaun Bypass,<br>
-    Orai, Jalaun, Uttar Pradesh<br>
-
-    Email:
-    <a href="mailto:Sigmainstituteofeducation@gmail.com">
-      Sigmainstituteofeducation@gmail.com
-    </a>
+<section class="section" id="contact" style="background:#e5edfa">
+  <div class="section-title">
+    <h2>संपर्क करें</h2>
+    <p>प्रवेश और कोर्स की जानकारी के लिए संपर्क विवरण</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <h3>📍 पता 1</h3>
+      <p>Madhogarh, District Jalaun, Uttar Pradesh, India</p>
+    </div>
+    <div class="contact-item">
+      <h3>📍 पता 2</h3>
+      <p>New Patel Nagar, Nearby Jalaun Bypass, Orai, Jalaun, UP</p>
+    </div>
+    <div class="contact-item">
+      <h3>📞 संपर्क नंबर 1</h3>
+      <p><a href="tel:9369349278">9369349278</a></p>
+      <p class="note">नाम: Manoj Kumar — कृपया प्रकाशित करने से पहले पुष्टि करें।</p>
+    </div>
+    <div class="contact-item">
+      <h3>📞 संपर्क नंबर 2</h3>
+      <p><a href="tel:9651248042">9651248042</a></p>
+      <p class="note">संपर्क व्यक्ति का नाम संस्थान से सत्यापित करें।</p>
+    </div>
+    <div class="contact-item">
+      <h3>✉️ ईमेल</h3>
+      <p><a href="mailto:Sigmainstituteofeducation@gmail.com">Sigmainstituteofeducation@gmail.com</a></p>
+    </div>
+    <div class="contact-item">
+      <h3>👨‍💼 प्रबंधन</h3>
+      <p>Manoj Kumar और Ravi Pratap Dohre</p>
+      <p class="note">नाम और पद प्रकाशित करने से पहले पुष्टि करें।</p>
+    </div>
   </div>
 </section>
 
+<section class="cta">
+  <h2>अपने भविष्य की तैयारी आज से शुरू करें</h2>
+  <p>प्रवेश, पात्रता और कोर्स की जानकारी के लिए संपर्क करें।</p>
+  <a class="btn" href="mailto:Sigmainstituteofeducation@gmail.com?subject=Admission%20Enquiry%202026-27">
+    ईमेल से पूछताछ करें
+  </a>
+</section>
 </main>
 
 <footer>
-  © 2026 Sigma Institute of Education<br>
-  Education • Skills • Future
+  <p><strong>Sigma Institute of Education</strong></p>
+  <p>Madhogarh, District Jalaun, Uttar Pradesh</p>
+  <p>© 2026 Sigma Institute of Education. All rights reserved.</p>
+  <p>कोर्स की उपलब्धता, मान्यता और प्रवेश विवरण संस्थान से सत्यापित करें।</p>
 </footer>
 
 </body>
