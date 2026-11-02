@@ -1,376 +1,570 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sigma Institute of Education - 3D Campus</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sigma Institute of Education Madhogarh</title>
+<meta name="description" content="Sigma Institute of Education Madhogarh, Jalaun, Uttar Pradesh">
+<meta name="theme-color" content="#071a3a">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden}
-body{font-family:Arial,sans-serif;background:#07152e;color:white}
-canvas{display:block;width:100%;height:100%;touch-action:none}
-
-#panel{
- position:absolute;top:12px;left:12px;z-index:5;
- width:280px;padding:14px;
- background:rgba(5,18,42,.92);
- border:1px solid #d4af37;border-radius:12px;
-}
-#panel h2{color:#e9c75b;font-size:17px;margin-bottom:7px}
-#panel p{font-size:12px;line-height:1.5;color:#e4eaf5}
-.buttons{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-button{
- border:0;border-radius:6px;padding:9px 10px;
- background:#d4af37;color:#07152e;font-weight:bold;
- font-size:12px;cursor:pointer
-}
-#message{
- position:absolute;bottom:12px;left:50%;
- transform:translateX(-50%);
- background:#07152e;border:1px solid #d4af37;
- border-radius:8px;padding:9px 12px;
- font-size:11px;text-align:center;width:max-content;
- max-width:94%;z-index:5
-}
-#error{
- display:none;position:absolute;z-index:10;
- top:35%;left:5%;width:90%;padding:15px;
- background:#4b1010;color:white;border:1px solid red;
- border-radius:10px;font-size:13px;line-height:1.5
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script type="importmap">
 {
- "imports":{
-  "three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
- }
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
 }
 </script>
+
+<style>
+:root{
+--navy:#071a3a;
+--blue:#123d82;
+--orange:#ea580c;
+--gold:#f59e0b;
+--wa:#25d366;
+--bg:#f5f8fd;
+--text:#172033;
+--muted:#64748b;
+--line:#e2e8f0;
+}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{
+font-family:Poppins,"Noto Sans Devanagari",sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+a{text-decoration:none}
+.container{width:min(1180px,92%);margin:auto}
+.top{
+background:#b91c1c;color:white;padding:8px 4%;
+display:flex;justify-content:center;gap:24px;
+flex-wrap:wrap;font-size:.82rem;font-weight:600;
+}
+.top a{color:#fff3a3}
+header{
+position:sticky;top:0;z-index:1000;background:white;
+box-shadow:0 5px 25px #071a3a14;
+}
+.nav{
+height:72px;display:flex;align-items:center;
+justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:11px;color:var(--navy)}
+.logo{
+width:47px;height:47px;border-radius:13px;
+background:linear-gradient(135deg,var(--navy),#1d4ed8);
+border:2px solid var(--gold);display:grid;place-items:center;
+color:white;font-size:1.45rem;font-weight:900;
+}
+.brand h1{font-size:1rem;line-height:1.15}
+.brand h1 span{color:var(--orange)}
+.brand small{color:var(--muted);font-size:.65rem;font-weight:600}
+.navlinks{display:flex;gap:17px;align-items:center}
+.navlinks a{color:#334155;font-size:.8rem;font-weight:600}
+.navlinks a:hover{color:var(--orange)}
+.call{background:var(--navy);color:white!important;padding:9px 16px;border-radius:50px}
+.hero{
+background:linear-gradient(120deg,#061938f5,#0b2450e8),
+url("https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1800&q=85") center/cover;
+color:white;padding:78px 0 95px;
+}
+.hero-content{max-width:900px;text-align:center;margin:auto}
+.badge{
+display:inline-block;background:#b91c1c;border:1px solid #fecaca;
+border-radius:50px;padding:7px 18px;font-size:.78rem;font-weight:800;
+}
+.hero h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.18;margin:18px 0 12px;font-weight:900}
+.hero h2 span{color:var(--gold)}
+.hero .lead{color:#bfdbfe;font-weight:700}
+.hero p{max-width:760px;margin:14px auto 28px;color:#dbeafe;font-size:.94rem}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:9px;font-weight:800;font-size:.88rem}
+.primary{background:var(--orange);color:white}
+.whatsapp{background:var(--wa);color:white}
+.stats{
+width:min(980px,92%);margin:-35px auto 0;position:relative;z-index:2;
+background:white;border-radius:18px;box-shadow:0 15px 40px #071a3a16;
+display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden;
+}
+.stat{padding:20px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{display:block;font-size:1.3rem;color:var(--navy)}
+.stat span{font-size:.78rem;color:var(--muted)}
+.section{padding:68px 0}
+.heading{text-align:center;margin-bottom:32px}
+.eyebrow{color:var(--orange);font-size:.75rem;font-weight:800;letter-spacing:1px}
+.heading h3{font-size:2rem;color:var(--navy);font-weight:900;margin:4px 0}
+.heading p{color:var(--muted);font-size:.88rem}
+
+/* 3D CAMPUS */
+.campus-section{background:linear-gradient(135deg,#eaf2ff,#f8fbff)}
+#campus3d{
+height:510px;width:100%;display:block;border-radius:20px;
+background:linear-gradient(#b9d9f2,#eaf4fb);touch-action:none;
+}
+.campus-wrap{
+position:relative;border-radius:20px;overflow:hidden;
+border:1px solid #cbdcf1;box-shadow:0 18px 45px #071a3a16;
+}
+.campus-tools{
+position:absolute;top:12px;left:12px;z-index:3;
+display:flex;gap:7px;flex-wrap:wrap;
+}
+.campus-tools button{
+border:0;border-radius:8px;padding:9px 12px;
+background:#071a3a;color:white;font-weight:700;font-size:12px;
+}
+.campus-note{
+position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+background:#071a3ae8;color:white;padding:7px 12px;
+border-radius:8px;font-size:11px;white-space:nowrap;
+}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}
+.about-img{
+min-height:330px;border-radius:20px;
+background:linear-gradient(#071a3a33,#071a3a33),
+url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=85") center/cover;
+}
+.about h3{font-size:1.8rem;color:var(--navy);margin-bottom:12px}
+.about p{color:var(--muted);font-size:.9rem;margin-bottom:13px}
+.ticks{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+.ticks div{font-size:.82rem;font-weight:700;color:var(--navy)}
+.courses{background:white}
+.course-grid,.why-grid,.facility-grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;
+}
+.course,.why{
+background:white;border:1px solid var(--line);
+border-radius:15px;padding:21px;text-align:center;
+}
+.course-icon{
+width:54px;height:54px;margin:0 auto 12px;border-radius:15px;
+background:#eff6ff;color:var(--blue);display:grid;
+place-items:center;font-size:1.4rem;
+}
+.course h4{font-size:1.15rem;color:var(--navy)}
+.course small{color:var(--orange);font-weight:700}
+.course p,.why p{color:var(--muted);font-size:.8rem;margin:8px 0 12px}
+.course a{color:var(--blue);font-size:.8rem;font-weight:800}
+.why{text-align:left}
+.why i{font-size:1.5rem;color:var(--orange);margin-bottom:10px}
+.why h4{color:var(--navy)}
+.facilities{background:var(--navy);color:white}
+.facilities .heading h3{color:white}
+.facilities .heading p{color:#b8c7df}
+.facility{
+padding:20px;border:1px solid #ffffff22;background:#ffffff08;
+border-radius:14px;display:flex;gap:13px;
+}
+.facility i{color:var(--gold);font-size:1.35rem}
+.facility h4{font-size:.92rem}
+.facility p{font-size:.76rem;color:#b8c7df}
+.scholar{
+background:linear-gradient(135deg,#fff7ed,#fff);
+border:1px solid #fed7aa;border-radius:18px;padding:30px;
+display:flex;justify-content:space-between;align-items:center;gap:20px;
+}
+.scholar h3{color:#9a3412;font-size:1.4rem}
+.scholar p{color:var(--muted);font-size:.86rem}
+.scholar i{font-size:2rem;color:var(--orange)}
+.contactbox{
+display:grid;grid-template-columns:.85fr 1.15fr;
+border-radius:20px;overflow:hidden;box-shadow:0 18px 45px #071a3a14;
+}
+.contact-info{
+background:linear-gradient(135deg,var(--navy),#123d82);
+color:white;padding:35px;
+}
+.contact-info h3,.form h3{font-size:1.45rem}
+.contact-info p{color:#cbd5e1;font-size:.82rem;margin:8px 0 20px}
+.info-item{display:flex;gap:12px;margin:16px 0;font-size:.85rem}
+.info-item i{color:var(--gold);width:20px}
+.info-item a{color:white}
+.form{background:white;padding:35px}
+.form>p{color:var(--muted);font-size:.8rem;margin-bottom:17px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.group{margin-bottom:12px}
+.group label{display:block;font-size:.78rem;font-weight:700;margin-bottom:5px}
+.input{
+width:100%;border:1.5px solid var(--line);border-radius:8px;
+padding:11px;outline:0;font:inherit;font-size:.82rem;
+}
+.input:focus{border-color:var(--blue)}
+.submit{
+width:100%;border:0;background:var(--navy);color:white;
+padding:12px;border-radius:8px;font-weight:800;cursor:pointer;
+}
+.faq{max-width:900px}
+.faq details{background:white;border:1px solid var(--line);border-radius:10px;margin:9px 0;padding:15px}
+.faq summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:.86rem}
+.faq details p{font-size:.8rem;color:var(--muted);padding-top:9px}
+footer{background:#041128;color:#94a3b8;text-align:center;padding:35px 5% 22px;font-size:.78rem}
+footer strong{color:var(--gold);font-size:1rem}
+footer p{margin-top:6px}
+.float{
+position:fixed;right:22px;bottom:22px;width:56px;height:56px;
+border-radius:50%;background:var(--wa);color:white;
+display:grid;place-items:center;font-size:28px;z-index:999;
+}
+.mobilebar{display:none}
+.assistant-launch{
+position:fixed;right:22px;bottom:92px;z-index:1100;
+border:0;border-radius:50%;width:58px;height:58px;
+background:#123d82;color:white;font-size:26px;
+box-shadow:0 8px 20px #0004;cursor:pointer;
+}
+.chatbox{
+position:fixed;right:20px;bottom:160px;
+width:min(340px,calc(100vw - 30px));background:white;
+border-radius:16px;box-shadow:0 20px 50px #071a3a44;
+z-index:1101;overflow:hidden;display:none;
+}
+.chat-head{
+background:var(--navy);color:white;padding:12px;
+display:flex;justify-content:space-between;font-weight:800;
+}
+.chat-head button{background:none;border:0;color:white;font-size:22px}
+.chat-body{padding:12px;height:220px;overflow:auto;font-size:.83rem}
+.chat-msg{padding:9px 11px;border-radius:10px;background:#eff6ff;margin-bottom:8px;white-space:pre-wrap}
+.chat-form{display:flex;gap:7px;padding:8px;border-top:1px solid var(--line)}
+.chat-form input{min-width:0;flex:1;border:1px solid var(--line);border-radius:8px;padding:9px}
+.chat-form button{border:0;border-radius:8px;background:var(--blue);color:white;padding:0 13px}
+
+@media(max-width:850px){
+.navlinks{display:none}
+.nav{height:64px}
+.brand h1{font-size:.88rem}
+.about{grid-template-columns:1fr}
+.stats{grid-template-columns:1fr}
+.stat{border-right:0;border-bottom:1px solid var(--line)}
+.contactbox{grid-template-columns:1fr}
+.row{grid-template-columns:1fr}
+.float{display:none}
+.mobilebar{
+position:fixed;display:grid;grid-template-columns:1fr 1fr;
+gap:8px;bottom:0;left:0;width:100%;padding:8px 10px;
+background:white;box-shadow:0 -5px 20px #0002;z-index:1000;
+}
+.mobilebar a{color:white;text-align:center;padding:10px;border-radius:7px;font-size:.8rem;font-weight:800}
+.mcall{background:var(--navy)}
+.mwa{background:var(--wa)}
+body{padding-bottom:60px}
+.section{padding:50px 0}
+.ticks{grid-template-columns:1fr}
+.campus-note{font-size:9px}
+.assistant-launch{right:14px;bottom:78px;width:52px;height:52px}
+.chatbox{right:14px;bottom:140px}
+}
+</style>
 </head>
 
 <body>
 
-<div id="panel">
- <h2>SIGMA INSTITUTE</h2>
- <p>Welcome to Sigma Institute of Education<br>
- Madhogarh, Jalaun, Uttar Pradesh</p>
- <div class="buttons">
-  <button id="dayBtn">Day / Night</button>
-  <button id="tourBtn">Campus Tour</button>
-  <button id="resetBtn">Reset View</button>
- </div>
+<div class="top">
+<span>🎓 <b>प्रवेश प्रारम्भ 2026-27</b></span>
+<span>📞 <a href="tel:+919651248042">9651248042</a> | <a href="tel:+919369349278">9369349278</a></span>
 </div>
 
-<div id="error"></div>
-<div id="message">Drag to rotate • Pinch to zoom • Explore 3D Campus</div>
+<header>
+<nav class="nav container">
+<a class="brand" href="#home">
+<div class="logo">S</div>
+<div>
+<h1>सिग्मा इंस्टीट्यूट <span>ऑफ एजुकेशन</span></h1>
+<small>माधौगढ़, जिला जालौन (उ.प्र.)</small>
+</div>
+</a>
+<div class="navlinks">
+<a href="#home">होम</a>
+<a href="#about">हमारे बारे में</a>
+<a href="#courses">कोर्स</a>
+<a href="#virtual-campus">3D कैंपस</a>
+<a href="#facilities">सुविधाएं</a>
+<a href="#admission">एडमिशन</a>
+<a class="call" href="tel:+919651248042">कॉल करें</a>
+</div>
+</nav>
+</header>
 
-<script type="module">
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+<main id="home">
 
-try{
+<section class="hero">
+<div class="container hero-content">
+<div class="badge">ADMISSION OPEN 2026-27</div>
+<h2>आपके उज्ज्वल भविष्य की <span>शुरुआत</span> आज ही</h2>
+<div class="lead">ज्ञान • अनुशासन • सफलता</div>
+<p>सिग्मा इंस्टीट्यूट ऑफ एजुकेशन माधौगढ़ में विभिन्न शैक्षिक एवं तकनीकी पाठ्यक्रमों की प्रवेश जानकारी। फीस, पात्रता और छात्रवृत्ति की वर्तमान जानकारी संस्थान से सत्यापित करें।</p>
+<div class="buttons">
+<a class="btn primary" href="#admission"><i class="fa-solid fa-pen-to-square"></i> Admission Enquiry</a>
+<a class="btn whatsapp" href="https://wa.me/919651248042?text=नमस्ते%2C%20मुझे%20एडमिशन%20की%20जानकारी%20चाहिए।"><i class="fa-brands fa-whatsapp"></i> WhatsApp करें</a>
+</div>
+</div>
+</section>
 
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0x9ac5e8);
-scene.fog=new THREE.Fog(0x9ac5e8,75,160);
+<section class="campus-section section" id="virtual-campus">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">INTERACTIVE VIRTUAL CAMPUS</div>
+<h3>हमारे कैंपस का 3D अनुभव</h3>
+<p>उंगली से घुमाएँ, दो उंगलियों से zoom करें और पूरे कैंपस को देखें। यह 3D प्रोटोटाइप है।</p>
+</div>
+<div class="campus-wrap">
+<div class="campus-tools">
+<button id="tourBtn">Campus Tour</button>
+<button id="dayBtn">Day / Night</button>
+<button id="resetBtn">Reset View</button>
+</div>
+<canvas id="campus3d"></canvas>
+<div class="campus-note">Drag: घुमाएँ • Pinch: Zoom • Two-finger: Pan</div>
+</div>
+</div>
+</section>
 
-const camera=new THREE.PerspectiveCamera(
- 55,innerWidth/innerHeight,0.1,300
-);
-camera.position.set(30,23,38);
+<div class="stats">
+<div class="stat"><strong>2026-27</strong><span>नया प्रवेश सत्र</span></div>
+<div class="stat"><strong>7+</strong><span>प्रमुख पाठ्यक्रम</span></div>
+<div class="stat"><strong>Call / WhatsApp</strong><span>Admission Enquiry</span></div>
+</div>
 
-const renderer=new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(innerWidth,innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-document.body.appendChild(renderer.domElement);
+<section class="section" id="about">
+<div class="container about">
+<div class="about-img" role="img" aria-label="College campus"></div>
+<div>
+<div class="eyebrow">ABOUT US</div>
+<h3>सिग्मा इंस्टीट्यूट ऑफ एजुकेशन</h3>
+<p>माधौगढ़, जिला जालौन, उत्तर प्रदेश स्थित सिग्मा इंस्टीट्यूट ऑफ एजुकेशन विद्यार्थियों को उच्च शिक्षा एवं करियर की दिशा में आगे बढ़ने के लिए पाठ्यक्रमों की जानकारी और प्रवेश सहायता प्रदान करता है।</p>
+<p>कोर्स की उपलब्धता, मान्यता, फीस और पात्रता की वर्तमान जानकारी संस्थान से सीधे सत्यापित करें।</p>
+<div class="ticks">
+<div>✓ करियर मार्गदर्शन</div>
+<div>✓ प्रवेश सहायता</div>
+<div>✓ फीस की जानकारी</div>
+<div>✓ छात्रवृत्ति सहायता</div>
+</div>
+</div>
+</div>
+</section>
 
-const controls=new OrbitControls(camera,renderer.domElement);
-controls.enableDamping=true;
-controls.target.set(0,5,0);
-controls.maxPolarAngle=Math.PI/2.05;
-controls.minDistance=12;
-controls.maxDistance=100;
+<section class="section courses" id="courses">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">COURSES</div>
+<h3>प्रमुख पाठ्यक्रम</h3>
+<p>कोर्स की उपलब्धता संस्थान से सत्यापित करें</p>
+</div>
+<div class="course-grid">
 
-scene.add(new THREE.HemisphereLight(0xffffff,0x63745b,2));
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-book-open"></i></div>
+<h4>B.A.</h4><small>Bachelor of Arts</small>
+<p>कला एवं मानविकी में उच्च शिक्षा।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-const sunlight=new THREE.DirectionalLight(0xffedc5,3);
-sunlight.position.set(-25,45,30);
-sunlight.castShadow=true;
-sunlight.shadow.mapSize.set(2048,2048);
-scene.add(sunlight);
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-flask"></i></div>
+<h4>B.Sc.</h4><small>Bachelor of Science</small>
+<p>विज्ञान विषयों में उच्च शिक्षा।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-const mat=(color,metalness=0,roughness=.6)=>
- new THREE.MeshStandardMaterial({color,metalness,roughness});
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+<h4>B.Ed.</h4><small>Bachelor of Education</small>
+<p>शिक्षण क्षेत्र से संबंधित पाठ्यक्रम।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-const navy=mat(0x102b50,.35,.3);
-const gold=mat(0xd4af37,.8,.25);
-const white=mat(0xe9edf2,.1,.5);
-const glass=mat(0x65b5dc,.35,.15);
-const grass=mat(0x3e8244);
-const darkGreen=mat(0x14542c);
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-school"></i></div>
+<h4>BTC</h4><small>Teacher Training</small>
+<p>शिक्षक प्रशिक्षण से संबंधित जानकारी।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-function box(w,h,d,x,y,z,material){
- const obj=new THREE.Mesh(
-  new THREE.BoxGeometry(w,h,d),material
- );
- obj.position.set(x,y,z);
- obj.castShadow=true;
- obj.receiveShadow=true;
- scene.add(obj);
- return obj;
-}
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-gears"></i></div>
+<h4>B.Tech</h4><small>Bachelor of Technology</small>
+<p>तकनीकी एवं इंजीनियरिंग शिक्षा।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-// Ground
-box(110,.5,110,0,-.4,0,grass);
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+<h4>LL.B.</h4><small>Bachelor of Laws</small>
+<p>कानून एवं विधि की शिक्षा।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-// Main building
-box(27,13,13,0,6.5,0,white);
-box(29,.8,14,0,13.3,0,navy);
-box(29,.3,14,0,.25,0,gold);
+<div class="course">
+<div class="course-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+<h4>ITI</h4><small>Industrial Training</small>
+<p>व्यावसायिक एवं तकनीकी कौशल।</p>
+<a href="#admission">Enquire Now →</a>
+</div>
 
-// Left and right wings
-box(10,15,12,-19,7.5,0,white);
-box(10,15,12,19,7.5,0,white);
-box(11,.8,13,-19,15.3,0,navy);
-box(11,.8,13,19,15.3,0,navy);
+</div>
+</div>
+</section>
 
-// Roof center
-box(9,1,8,0,14,0,gold);
-box(5,2,5,0,15.5,0,navy);
+<section class="section">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">WHY SIGMA</div>
+<h3>हमें क्यों चुनें?</h3>
+</div>
+<div class="why-grid">
+<div class="why"><i class="fa-solid fa-user-graduate"></i><h4>Career Focus</h4><p>करियर लक्ष्य के अनुसार कोर्स चुनने में सहायता।</p></div>
+<div class="why"><i class="fa-solid fa-indian-rupee-sign"></i><h4>फीस की जानकारी</h4><p>वर्तमान फीस के लिए सीधे संपर्क करें।</p></div>
+<div class="why"><i class="fa-solid fa-award"></i><h4>Scholarship Support</h4><p>पात्रता और प्रक्रिया की जानकारी में सहायता।</p></div>
+<div class="why"><i class="fa-solid fa-headset"></i><h4>Easy Enquiry</h4><p>Call और WhatsApp के माध्यम से संपर्क।</p></div>
+</div>
+</div>
+</section>
 
-// Front windows
-for(let x=-21;x<=21;x+=4){
- for(let y=3;y<=11;y+=3){
-  if(Math.abs(x)<3 && y<8)continue;
-  box(2,1.8,.18,x,y,6.58,glass);
-  box(2.1,.12,.25,x,y+1,6.58,gold);
- }
-}
+<section class="facilities section" id="facilities">
+<div class="container">
+<div class="heading">
+<div class="eyebrow" style="color:var(--gold)">FACILITIES</div>
+<h3>विद्यार्थियों के लिए सुविधाएं</h3>
+<p>शिक्षा और करियर मार्गदर्शन संबंधी सहायता</p>
+</div>
+<div class="facility-grid">
+<div class="facility"><i class="fa-solid fa-building-columns"></i><div><h4>शैक्षणिक वातावरण</h4><p>पढ़ाई के लिए अनुकूल वातावरण।</p></div></div>
+<div class="facility"><i class="fa-solid fa-chalkboard-user"></i><div><h4>मार्गदर्शन</h4><p>शैक्षणिक एवं करियर संबंधी सहायता।</p></div></div>
+<div class="facility"><i class="fa-solid fa-file-signature"></i><div><h4>Admission Assistance</h4><p>प्रवेश प्रक्रिया की जानकारी।</p></div></div>
+<div class="facility"><i class="fa-solid fa-comments"></i><div><h4>Call & WhatsApp</h4><p>सीधे enquiry करने की सुविधा।</p></div></div>
+</div>
+</div>
+</section>
 
-// Side windows
-for(let z=-4;z<=4;z+=3){
- for(let y=3;y<=11;y+=3){
-  box(.18,1.8,2,13.58,y,z,glass);
-  box(.18,1.8,2,-13.58,y,z,glass);
- }
-}
+<section class="section">
+<div class="container">
+<div class="scholar">
+<div>
+<h3>🎓 छात्रवृत्ति सहायता</h3>
+<p>पात्रता, दस्तावेज और वर्तमान नियमों की जानकारी के लिए संस्थान से संपर्क करें।</p>
+</div>
+<i class="fa-solid fa-award"></i>
+</div>
+</div>
+</section>
 
-// Text signboard using canvas texture
-function sign(text,w,h){
- const c=document.createElement('canvas');
- c.width=1600;c.height=260;
- const ctx=c.getContext('2d');
+<section class="section" id="admission">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">ADMISSION 2026-27</div>
+<h3>आज ही Enquiry करें</h3>
+<p>फीस, कोर्स, प्रवेश और छात्रवृत्ति की जानकारी के लिए संपर्क करें</p>
+</div>
 
- ctx.fillStyle='#071a35';
- ctx.fillRect(0,0,1600,260);
- ctx.strokeStyle='#d4af37';
- ctx.lineWidth=12;
- ctx.strokeRect(8,8,1584,244);
+<div class="contactbox">
+<div class="contact-info">
+<h3>संपर्क जानकारी</h3>
+<p>सिग्मा इंस्टीट्यूट ऑफ एजुकेशन माधौगढ़</p>
 
- ctx.textAlign='center';
- ctx.textBaseline='middle';
- ctx.font='bold 105px Arial';
- ctx.fillStyle='#f5d879';
- ctx.shadowColor='#ffdf70';
- ctx.shadowBlur=15;
- ctx.fillText(text,800,130);
+<div class="info-item">
+<i class="fa-solid fa-phone"></i>
+<div>Helpline<br><a href="tel:+919651248042">9651248042</a></div>
+</div>
 
- const texture=new THREE.CanvasTexture(c);
- texture.colorSpace=THREE.SRGBColorSpace;
+<div class="info-item">
+<i class="fa-solid fa-phone"></i>
+<div>Alternate<br><a href="tel:+919369349278">9369349278</a></div>
+</div>
 
- const material=new THREE.MeshStandardMaterial({
-  map:texture,metalness:.35,roughness:.35
- });
+<div class="info-item">
+<i class="fa-solid fa-location-dot"></i>
+<div>माधौगढ़, जिला जालौन, उत्तर प्रदेश</div>
+</div>
 
- const board=new THREE.Mesh(
-  new THREE.BoxGeometry(w,h,.25),material
- );
- board.castShadow=true;
- return board;
-}
+<div class="info-item">
+<i class="fa-solid fa-location-dot"></i>
+<div>New Patel Nagar, Nearby Jalaun Bypass, Orai, Jalaun, UP</div>
+</div>
 
-// Main institute name
-const mainName=sign('SIGMA INSTITUTE OF EDUCATION',23,2.8);
-mainName.position.set(0,10.3,6.75);
-scene.add(mainName);
+<div class="info-item">
+<i class="fa-solid fa-envelope"></i>
+<div><a href="mailto:Sigmainstituteofeducation@gmail.com">Sigmainstituteofeducation@gmail.com</a></div>
+</div>
+</div>
 
-// Entrance
-box(7,8,1,0,4.5,7.1,navy);
-box(4.5,6,.2,0,3.5,7.7,glass);
-box(5,.2,.3,0,6.6,7.85,gold);
+<div class="form">
+<h3>Admission Enquiry Form</h3>
+<p>जानकारी भरें और WhatsApp पर enquiry भेजें।</p>
 
-// Main gate pillars
-for(const x of [-14,14]){
- box(1,6,1,x,3,20,gold);
- box(2,1,2,x,6.2,20,navy);
-}
-box(28,.35,.5,0,5.7,20,navy);
+<form id="enquiryForm">
+<div class="row">
+<div class="group">
+<label>नाम *</label>
+<input class="input" id="name" required maxlength="80" placeholder="अपना नाम">
+</div>
+<div class="group">
+<label>मोबाइल *</label>
+<input class="input" id="phone" required type="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 अंकों का नंबर">
+</div>
+</div>
 
-const gateName=sign('SIGMA INSTITUTE OF EDUCATION',18,1.8);
-gateName.position.set(0,7.3,20);
-scene.add(gateName);
+<div class="group">
+<label>कोर्स *</label>
+<select class="input" id="course" required>
+<option value="">कोर्स चुनें</option>
+<option>B.A.</option>
+<option>B.Sc.</option>
+<option>B.Ed.</option>
+<option>BTC</option>
+<option>B.Tech</option>
+<option>LL.B.</option>
+<option>ITI</option>
+</select>
+</div>
 
-// Road
-box(9,.15,30,0,.05,29,mat(0x555b62));
-box(5,.12,15,0,.15,10,mat(0xc7c3b9));
+<div class="group">
+<label>संदेश</label>
+<textarea class="input" id="msg" rows="3" maxlength="500" placeholder="अपना सवाल लिखें"></textarea>
+</div>
 
-// Library
-box(12,7,10,-31,3.5,0,white);
-box(13,.7,11,-31,7.2,0,navy);
-box(8,2,.2,-31,4,5.1,glass);
-const library=sign('LIBRARY',6,1.2);
-library.position.set(-31,5.8,5.3);
-scene.add(library);
+<button class="submit" type="submit">
+<i class="fa-brands fa-whatsapp"></i> WhatsApp पर भेजें
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
 
-// Computer lab
-box(12,7,10,31,3.5,0,white);
-box(13,.7,11,31,7.2,0,navy);
-box(8,2,.2,31,4,5.1,glass);
-const computer=sign('COMPUTER LAB',8,1.2);
-computer.position.set(31,5.8,5.3);
-scene.add(computer);
+<section class="section faq">
+<div class="container">
+<div class="heading">
+<div class="eyebrow">FAQ</div>
+<h3>अक्सर पूछे जाने वाले सवाल</h3>
+</div>
 
-// Fountain
-const fountainBase=new THREE.Mesh(
- new THREE.CylinderGeometry(4.5,4.8,.6,40),white
-);
-fountainBase.position.set(0,.3,-19);
-scene.add(fountainBase);
+<details>
+<summary>2026-27 में प्रवेश कब से है?</summary>
+<p>वेबसाइट पर 2026-27 के लिए प्रवेश प्रारम्भ बताया गया है। सीट और पात्रता की वर्तमान जानकारी संस्थान से सत्यापित करें।</p>
+</details>
 
-const water=new THREE.Mesh(
- new THREE.CylinderGeometry(4,4,.2,40),
- mat(0x35b9e9,.5,.15)
-);
-water.position.set(0,.65,-19);
-scene.add(water);
+<details>
+<summary>फीस कितनी है?</summary>
+<p>फीस कोर्स के अनुसार अलग हो सकती है। वर्तमान फीस के लिए दिए गए नंबरों पर संपर्क करें।</p>
+</details>
 
-const waterJet=new THREE.Mesh(
- new THREE.CylinderGeometry(.2,.4,3,16),
- mat(0x9be6ff,.4,.15)
-);
-waterJet.position.set(0,2.2,-19);
-scene.add(waterJet);
+<details>
+<summary>छात्रवृत्ति मिलती है?</summary>
+<p>छात्रवृत्ति की पात्रता और वर्तमान प्रक्रिया संस्थान से पूछें।</p>
+</details>
 
-// Trees
-function tree(x,z){
- const trunk=new THREE.Mesh(
-  new THREE.CylinderGeometry(.25,.4,2.5,10),
-  mat(0x754522)
- );
- trunk.position.set(x,1.25,z);
- scene.add(trunk);
+<details>
+<summary>Admission enquiry कैसे करें?</summary>
+<p>फॉर्म भरकर WhatsApp पर enquiry भेजें या सीधे कॉल करें।</p>
+</details>
+</div>
+</section>
 
- const leaves=new THREE.Mesh(
-  new THREE.SphereGeometry(1.7,16,12),darkGreen
- );
- leaves.position.set(x,3.4,z);
- leaves.castShadow=true;
- scene.add(leaves);
-}
-for(let x=-42;x<=42;x+=9){
- tree(x,15);
- tree(x,-29);
-}
-for(let z=-20;z<=20;z+=10){
- tree(-43,z);
- tree(43,z);
-}
-
-// Campus lights
-for(let x=-25;x<=25;x+=10){
- box(.15,4,.15,x,2,12,mat(0x343943));
- const bulb=new THREE.PointLight(0xffd783,0,12);
- bulb.position.set(x,4.3,12);
- scene.add(bulb);
- box(.7,.3,.7,x,4.2,12,gold);
-}
-
-// Small student model
-const student=new THREE.Group();
-
-const body=new THREE.Mesh(
- new THREE.CylinderGeometry(.5,.55,1.5,16),navy
-);
-body.position.y=1.2;
-student.add(body);
-
-const head=new THREE.Mesh(
- new THREE.SphereGeometry(.42,18,16),
- mat(0xc88e65)
-);
-head.position.y=2.2;
-student.add(head);
-
-student.position.set(8,0,16);
-scene.add(student);
-
-// Day / Night
-let night=false;
-document.getElementById('dayBtn').onclick=()=>{
- night=!night;
- const sky=night?0x07152e:0x9ac5e8;
- scene.background.setHex(sky);
- scene.fog.color.setHex(sky);
- sunlight.intensity=night?.35:3;
-
- scene.traverse(obj=>{
-  if(obj.isPointLight)obj.intensity=night?2:0;
- });
-};
-
-// Campus tour
-let touring=false;
-let angle=0;
-
-document.getElementById('tourBtn').onclick=()=>{
- touring=!touring;
- document.getElementById('tourBtn').textContent=
- touring?'Stop Tour':'Campus Tour';
-};
-
-// Reset
-document.getElementById('resetBtn').onclick=()=>{
- touring=false;
- camera.position.set(30,23,38);
- controls.target.set(0,5,0);
- controls.update();
-};
-
-// Animation
-function animate(){
- requestAnimationFrame(animate);
-
- if(touring){
-  angle+=.003;
-  camera.position.x=42*Math.sin(angle);
-  camera.position.z=42*Math.cos(angle);
-  camera.position.y=22;
-  controls.target.set(0,5,0);
- }
- controls.update();
- renderer.render(scene,camera);
-}
-animate();
-
-window.addEventListener('resize',()=>{
- camera.aspect=innerWidth/innerHeight;
- camera.updateProjectionMatrix();
- renderer.setSize(innerWidth,innerHeight);
-});
-
-}catch(error){
- const panel=document.getElementById('error');
- panel.style.display='block';
- panel.textContent='3D loading error: '+error.message+
- ' Please check internet connection and refresh the page.';
- console.error(error);
-}
-</script>
-</body>
-</html>
+</mai
