@@ -1,701 +1,317 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07152e">
 <title>Sigma Institute of Education | 3D Campus</title>
-
 <style>
-:root {
-  --navy:#07152e;
-  --blue:#102e59;
-  --gold:#d4af37;
-  --white:#ffffff;
+*{margin:0;padding:0;box-sizing:border-box}
+body{overflow:hidden;font-family:Arial,sans-serif;background:#07152e;color:white}
+#scene{width:100vw;height:100vh;display:block}
+.panel{
+ position:fixed;z-index:5;top:15px;left:15px;
+ background:rgba(5,18,42,.88);padding:15px;
+ border:1px solid #d4af37;border-radius:12px;
+ max-width:290px;backdrop-filter:blur(8px)
 }
-* {box-sizing:border-box}
-html {scroll-behavior:smooth}
-body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#07152e;
-  color:white;
+.panel h2{color:#e5c45c;font-size:18px;margin-bottom:6px}
+.panel p{font-size:12px;color:#dce5f5;line-height:1.5}
+.controls{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+button{
+ background:#d4af37;color:#07152e;border:0;padding:9px 11px;
+ border-radius:7px;font-weight:bold;font-size:12px
 }
-header {
-  padding:14px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  background:#061126;
-  border-bottom:1px solid #d4af3760;
-}
-.brand {
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.logo {
-  width:48px;height:48px;
-  display:grid;place-items:center;
-  border:2px solid var(--gold);
-  border-radius:50%;
-  color:var(--gold);
-  font-weight:bold;
-}
-.brand h2 {font-size:16px;margin:0}
-.brand small {color:#c9d5e8}
-nav {display:flex;gap:15px;flex-wrap:wrap}
-nav a {
-  color:white;text-decoration:none;font-size:13px;
-}
-nav a:hover {color:var(--gold)}
-
-.hero {
-  padding:35px 5% 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#07152e,#153b70);
-}
-.tag {
-  display:inline-block;
-  color:#172744;
-  background:var(--gold);
-  padding:7px 17px;
-  border-radius:30px;
-  font-weight:bold;
-  font-size:12px;
-}
-.hero h1 {
-  font-size:clamp(27px,5vw,45px);
-  margin:18px 0 8px;
-}
-.hero h1 span {color:var(--gold)}
-.hero p {color:#d6e3f7;line-height:1.7}
-
-.campus-section {
-  padding:15px 4% 30px;
-  background:#07152e;
-}
-.campus-heading {
-  text-align:center;
-  color:var(--gold);
-  margin:5px 0 12px;
-}
-#campus {
-  width:100%;
-  height:440px;
-  position:relative;
-  overflow:hidden;
-  border:2px solid #d4af37;
-  border-radius:16px;
-  background:#102e59;
-  touch-action:none;
-}
-#campus canvas {
-  display:block;
-  width:100%;
-  height:100%;
-}
-.hint {
-  text-align:center;
-  color:#c6d5ec;
-  font-size:12px;
-  margin:10px 0;
-}
-.control-panel {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px auto;
-}
-.control-panel button,
-.btn {
-  border:1px solid var(--gold);
-  border-radius:9px;
-  padding:11px 17px;
-  background:var(--gold);
-  color:#142440;
-  font-weight:bold;
-  cursor:pointer;
-}
-.control-panel button:active {
-  transform:scale(.95);
-  background:#fff0b0;
-}
-.move-controls {
-  display:grid;
-  grid-template-columns:repeat(3,48px);
-  grid-template-rows:repeat(2,43px);
-  gap:5px;
-  justify-content:center;
-  margin:15px auto;
-}
-.move-controls button {
-  background:#173e70;
-  color:white;
-  border:1px solid var(--gold);
-  border-radius:9px;
-  font-size:19px;
-  touch-action:none;
-}
-.move-controls .up {grid-column:2}
-.move-controls .left {grid-column:1;grid-row:2}
-.move-controls .down {grid-column:2;grid-row:2}
-.move-controls .right {grid-column:3;grid-row:2}
-
-.section {
-  padding:45px 6%;
-}
-.section h2 {
-  text-align:center;
-  color:var(--gold);
-  font-size:27px;
-}
-.section-sub {
-  text-align:center;
-  color:#c6d5ec;
-  margin-bottom:25px;
-}
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:17px;
-}
-.card {
-  background:linear-gradient(145deg,#142f55,#0c1d38);
-  border:1px solid #d4af3750;
-  border-radius:13px;
-  padding:20px;
-  transition:.3s;
-}
-.card:hover {transform:translateY(-5px);border-color:var(--gold)}
-.card .icon {font-size:32px}
-.card h3 {color:var(--gold)}
-.card p {color:#d3deef;line-height:1.6}
-
-.about {
-  background:#102746;
-  padding:35px 6%;
-  border-top:1px solid #d4af3750;
-  border-bottom:1px solid #d4af3750;
-}
-.about h2 {color:var(--gold)}
-.about p {line-height:1.8;color:#d9e5f5}
-
-.contact-card {
-  background:#102746;
-  border:1px solid #d4af3750;
-  border-radius:12px;
-  padding:20px;
-  overflow-wrap:anywhere;
-}
-.contact-card h3 {color:var(--gold)}
-.contact-card a {color:#fff}
-.cta {
-  text-align:center;
-  padding:40px 5%;
-  background:linear-gradient(120deg,#153b70,#07152e);
-}
-.cta h2 {color:var(--gold)}
-footer {
-  background:#030b19;
-  text-align:center;
-  padding:25px 5%;
-  color:#bfcde0;
-  font-size:13px;
-}
-@media(max-width:600px) {
-  header {justify-content:center}
-  nav {justify-content:center}
-  #campus {height:360px}
-  .section {padding:35px 5%}
+#hint{
+ position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
+ background:rgba(5,18,42,.85);padding:10px 14px;
+ border-radius:8px;font-size:12px;text-align:center;
+ width:max-content;max-width:90%;color:white
 }
 </style>
 </head>
-
 <body>
 
-<header>
-  <div class="brand">
-    <div class="logo">SIG</div>
-    <div>
-      <h2>SIGMA INSTITUTE</h2>
-      <small>OF EDUCATION</small>
-    </div>
-  </div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#campus-area">3D Campus</a>
-    <a href="#about">About</a>
-    <a href="#courses">Courses</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<div class="panel">
+ <h2>SIGMA INSTITUTE</h2>
+ <p>Welcome to Sigma Institute of Education, Madhogarh, Jalaun, Uttar Pradesh.</p>
+ <div class="controls">
+  <button onclick="toggleDay()">Day / Night</button>
+  <button onclick="tour()">Campus Tour</button>
+  <button onclick="resetView()">Reset View</button>
+ </div>
+</div>
 
-<main>
-
-<section class="hero" id="home">
-  <span class="tag">🎓 ADMISSION OPEN 2026–27</span>
-  <h1>WELCOME TO <span>SIGMA INSTITUTE</span></h1>
-  <p>ज्ञान • शिक्षा • कौशल • उज्ज्वल भविष्य</p>
-  <p>Explore Our Virtual 3D Campus</p>
-</section>
-
-<section class="campus-section" id="campus-area">
-  <h2 class="campus-heading">🏫 VIRTUAL 3D CAMPUS</h2>
-
-  <div id="campus">
-    <div id="loading" style="
-      position:absolute;inset:0;display:grid;
-      place-items:center;color:white;z-index:2;
-      background:#102e59;">
-      Loading 3D Campus...
-    </div>
-  </div>
-
-  <p class="hint">
-    उंगली से स्क्रीन घुमाएँ • Pinch से Zoom करें • कैरेक्टर चलाएँ
-  </p>
-
-  <div class="control-panel">
-    <button id="rotateBtn">🔄 Rotate Camera</button>
-    <button id="resetBtn">🏠 Reset View</button>
-  </div>
-
-  <div class="move-controls">
-    <button class="up" data-move="forward">▲</button>
-    <button class="left" data-move="left">◀</button>
-    <button class="down" data-move="back">▼</button>
-    <button class="right" data-move="right">▶</button>
-  </div>
-  <p class="hint">ऊपर दिए बटन से 3D विद्यार्थी को कैंपस में चलाएँ।</p>
-</section>
-
-<section class="about" id="about">
-  <h2>About Our Institute</h2>
-  <p>
-    Sigma Institute of Education में आपका स्वागत है।
-    हमारा उद्देश्य विद्यार्थियों को शिक्षा और कौशल विकास
-    के अवसरों की जानकारी उपलब्ध कराना है।
-  </p>
-  <p>
-    Location: Madhogarh, District Jalaun,
-    Uttar Pradesh, India.
-  </p>
-</section>
-
-<section class="section" id="courses">
-  <h2>OUR COURSES</h2>
-  <p class="section-sub">Explore Educational Programs</p>
-
-  <div class="cards">
-    <div class="card"><div class="icon">🎓</div>
-      <h3>B.A.</h3><p>Arts Education</p></div>
-
-    <div class="card"><div class="icon">🔬</div>
-      <h3>B.Sc.</h3><p>Science Education</p></div>
-
-    <div class="card"><div class="icon">📘</div>
-      <h3>B.Ed.</h3><p>Teacher Education</p></div>
-
-    <div class="card"><div class="icon">📚</div>
-      <h3>BTC</h3><p>Teacher Training</p></div>
-
-    <div class="card"><div class="icon">⚖️</div>
-      <h3>LLB</h3><p>Law Education</p></div>
-
-    <div class="card"><div class="icon">🏗️</div>
-      <h3>B.Tech</h3><p>Technical Education</p></div>
-
-    <div class="card"><div class="icon">🛠️</div>
-      <h3>ITI</h3><p>Technical Training</p></div>
-
-    <div class="card"><div class="icon">💻</div>
-      <h3>Computer Courses</h3><p>Computer Education</p></div>
-
-    <div class="card"><div class="icon">🏢</div>
-      <h3>Polytechnic</h3><p>Diploma Education</p></div>
-
-    <div class="card"><div class="icon">📗</div>
-      <h3>B.Com.</h3><p>Commerce Education</p></div>
-  </div>
-
-  <p class="hint">
-    सभी कोर्स की उपलब्धता, मान्यता, पात्रता और फीस
-    संस्थान से सत्यापित करें।
-  </p>
-</section>
-
-<section class="section" id="contact">
-  <h2>CONTACT US</h2>
-  <p class="section-sub">Get Admission Information</p>
-
-  <div class="cards">
-    <div class="contact-card">
-      <h3>📍 Campus Address</h3>
-      <p>Madhogarh, District Jalaun, Uttar Pradesh</p>
-    </div>
-
-    <div class="contact-card">
-      <h3>📍 Office Address</h3>
-      <p>New Patel Nagar, Nearby Jalaun Bypass,
-      Orai, Jalaun, UP</p>
-    </div>
-
-    <div class="contact-card">
-      <h3>📞 Contact 1</h3>
-      <a href="tel:9369349278">9369349278</a>
-    </div>
-
-    <div class="contact-card">
-      <h3>📞 Contact 2</h3>
-      <a href="tel:9651248042">9651248042</a>
-    </div>
-
-    <div class="contact-card">
-      <h3>✉️ Email</h3>
-      <a href="mailto:Sigmainstituteofeducation@gmail.com">
-        Sigmainstituteofeducation@gmail.com
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <h3>👨‍💼 Management</h3>
-      <p>Manoj Kumar & Ravi Pratap Dohre</p>
-    </div>
-  </div>
-</section>
-
-<section class="cta">
-  <h2>START YOUR FUTURE WITH SIGMA</h2>
-  <p>प्रवेश की जानकारी के लिए हमसे संपर्क करें।</p>
-  <a class="btn"
-     href="mailto:Sigmainstituteofeducation@gmail.com?subject=Admission%20Enquiry">
-     Admission Enquiry
-  </a>
-</section>
-
-</main>
-
-<footer>
-  <h3>SIGMA INSTITUTE OF EDUCATION</h3>
-  <p>Madhogarh, District Jalaun, Uttar Pradesh</p>
-  <p>© 2026 Sigma Institute of Education</p>
-</footer>
+<div id="hint">Drag to rotate • Pinch to zoom • Touch controls supported</div>
+<canvas id="scene"></canvas>
 
 <script type="module">
 import * as THREE from
 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
+import { OrbitControls } from
+'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/controls/OrbitControls.js';
 
-const container = document.getElementById('campus');
-const loading = document.getElementById('loading');
+const canvas=document.querySelector('#scene');
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x91bce0);
+scene.fog=new THREE.Fog(0x91bce0,65,150);
 
-let scene, camera, renderer, character;
-let angle = 0;
-let autoRotate = false;
-let move = {forward:false,back:false,left:false,right:false};
+const camera=new THREE.PerspectiveCamera(
+ 55,window.innerWidth/window.innerHeight,.1,300
+);
+camera.position.set(24,19,30);
 
-function material(color,roughness=0.8) {
-  return new THREE.MeshStandardMaterial({color,roughness});
-}
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 
-function addBox(x,y,z,w,h,d,color) {
-  const mesh = new THREE.Mesh(
-    new THREE.BoxGeometry(w,h,d),
-    material(color)
-  );
-  mesh.position.set(x,y,z);
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  scene.add(mesh);
-  return mesh;
-}
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;
+controls.target.set(0,4,0);
+controls.maxPolarAngle=Math.PI/2.05;
+controls.minDistance=12;
+controls.maxDistance=75;
 
-function addTree(x,z) {
-  const trunk = new THREE.Mesh(
-    new THREE.CylinderGeometry(.12,.18,1.2,8),
-    material(0x684326)
-  );
-  trunk.position.set(x,.6,z);
-  trunk.castShadow = true;
-  scene.add(trunk);
+scene.add(new THREE.HemisphereLight(0xffffff,0x53617a,2));
 
-  const leaves = new THREE.Mesh(
-    new THREE.SphereGeometry(.8,12,10),
-    material(0x27834c)
-  );
-  leaves.position.set(x,1.65,z);
-  leaves.castShadow = true;
-  scene.add(leaves);
-}
+const sun=new THREE.DirectionalLight(0xffedc2,3);
+sun.position.set(-20,35,20);
+sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+scene.add(sun);
 
-function createBuilding(x,z,w,h,d,name) {
-  addBox(x,h/2,z,w,h,d,0xe1e7ee);
-
-  // Roof
-  addBox(x,h+.12,z,w+.3,.25,d+.3,0xd4af37);
-
-  // Front entrance
-  addBox(x,.85,z+d/2+.015,1.2,1.7,.12,0x15365f);
-
-  // Windows
-  const count = Math.max(2,Math.floor(w/1.3));
-  for(let i=0;i<count;i++) {
-    for(let floor=0;floor<Math.floor(h/1.7);floor++) {
-      addBox(
-        x-w/2+.8+i*(w-.9)/(count-1),
-        1.1+floor*1.6,
-        z+d/2+.025,
-        .55,.8,.08,
-        0x4e9bc9
-      );
-    }
-  }
-
-  // Signboard
-  const sign = addBox(x,h-.65,z+d/2+.12,w*.7,.55,.12,0x102e59);
-  sign.material = material(0x102e59);
-}
-
-function createCharacter() {
-  const group = new THREE.Group();
-
-  const body = new THREE.Mesh(
-    new THREE.CylinderGeometry(.25,.32,.85,12),
-    material(0x173c78)
-  );
-  body.position.y=1.05;
-  group.add(body);
-
-  const head = new THREE.Mesh(
-    new THREE.SphereGeometry(.28,16,12),
-    material(0xd69c75)
-  );
-  head.position.y=1.72;
-  group.add(head);
-
-  const hair = new THREE.Mesh(
-    new THREE.SphereGeometry(.29,16,8,0,Math.PI*2,0,Math.PI*.55),
-    material(0x171717)
-  );
-  hair.position.y=1.83;
-  group.add(hair);
-
-  for(let side of [-1,1]) {
-    const leg = new THREE.Mesh(
-      new THREE.CylinderGeometry(.09,.1,.65,8),
-      material(0x202d42)
-    );
-    leg.position.set(side*.13,.3,0);
-    group.add(leg);
-  }
-
-  group.position.set(0,0,5);
-  scene.add(group);
-  return group;
-}
-
-function init() {
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x8ec8ec);
-  scene.fog = new THREE.Fog(0x8ec8ec,35,75);
-
-  camera = new THREE.PerspectiveCamera(
-    55,
-    container.clientWidth/container.clientHeight,
-    .1,100
-  );
-
-  renderer = new THREE.WebGLRenderer({
-    antialias:true,
-    powerPreference:'default'
-  });
-  renderer.setSize(container.clientWidth,container.clientHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
-  renderer.shadowMap.enabled=true;
-  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-  container.appendChild(renderer.domElement);
-
-  scene.add(new THREE.HemisphereLight(0xffffff,0x536b46,2));
-
-  const sun = new THREE.DirectionalLight(0xffffff,2.3);
-  sun.position.set(-12,20,10);
-  sun.castShadow=true;
-  scene.add(sun);
-
-  // Ground
-  const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(70,70),
-    material(0x438455)
-  );
-  ground.rotation.x=-Math.PI/2;
-  ground.receiveShadow=true;
-  scene.add(ground);
-
-  // Main road
-  addBox(0,.025,0,5,.05,45,0x858c96);
-  addBox(0,.04,0,.16,.02,45,0xe7d7a2);
-
-  // Main college building
-  createBuilding(0, -8, 17, 6, 5,"SIGMA");
-
-  // Other campus buildings
-  createBuilding(-12,0,6,4,5,"LIBRARY");
-  createBuilding(12,0,6,4,5,"CLASSROOM");
-  createBuilding(-12,-11,6,3.5,5,"LAB");
-  createBuilding(12,-11,6,3.5,5,"OFFICE");
-
-  // Garden paths
-  addBox(-9,.04,9,12,.06,3,0xc6b38a);
-  addBox(9,.04,9,12,.06,3,0xc6b38a);
-
-  // Trees
-  for(let x=-19;x<=19;x+=4) {
-    addTree(x,17);
-    addTree(x,-19);
-  }
-  for(let z=-14;z<=14;z+=5) {
-    addTree(-20,z);
-    addTree(20,z);
-  }
-
-  // Garden fountains
-  const fountain = new THREE.Mesh(
-    new THREE.CylinderGeometry(1.2,1.5,.4,24),
-    material(0xd4af37)
-  );
-  fountain.position.set(0,.2,10);
-  scene.add(fountain);
-
-  const water = new THREE.Mesh(
-    new THREE.CylinderGeometry(1,.9,.12,24),
-    new THREE.MeshStandardMaterial({
-      color:0x43c8ed,
-      metalness:.4,
-      roughness:.2
-    })
-  );
-  water.position.set(0,.46,10);
-  scene.add(water);
-
-  character = createCharacter();
-
-  camera.position.set(19,17,23);
-  camera.lookAt(0,1,0);
-
-  loading.style.display='none';
-
-  animate();
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  const speed=.12;
-  if(move.forward) character.position.z-=speed;
-  if(move.back) character.position.z+=speed;
-  if(move.left) character.position.x-=speed;
-  if(move.right) character.position.x+=speed;
-
-  character.position.x=THREE.MathUtils.clamp(character.position.x,-18,18);
-  character.position.z=THREE.MathUtils.clamp(character.position.z,-18,18);
-
-  if(autoRotate) angle+=.003;
-
-  const radius=30;
-  camera.position.x=Math.sin(angle)*radius;
-  camera.position.z=Math.cos(angle)*radius;
-  camera.position.y=17;
-  camera.lookAt(0,1,0);
-
-  renderer.render(scene,camera);
-}
-
-document.querySelectorAll('[data-move]').forEach(button=>{
-  const direction=button.dataset.move;
-
-  button.addEventListener('pointerdown',e=>{
-    e.preventDefault();
-    move[direction]=true;
-  });
-
-  ['pointerup','pointerleave','pointercancel'].forEach(event=>{
-    button.addEventListener(event,()=>{
-      move[direction]=false;
-    });
-  });
+const gold=new THREE.MeshStandardMaterial({
+ color:0xd4af37,metalness:.8,roughness:.25
 });
-
-document.addEventListener('keydown',e=>{
-  const keys={
-    ArrowUp:'forward',w:'forward',
-    ArrowDown:'back',s:'back',
-    ArrowLeft:'left',a:'left',
-    ArrowRight:'right',d:'right'
-  };
-  if(keys[e.key]) move[keys[e.key]]=true;
+const navy=new THREE.MeshStandardMaterial({
+ color:0x102d52,metalness:.25,roughness:.35
 });
-
-document.addEventListener('keyup',e=>{
-  const keys={
-    ArrowUp:'forward',w:'forward',
-    ArrowDown:'back',s:'back',
-    ArrowLeft:'left',a:'left',
-    ArrowRight:'right',d:'right'
-  };
-  if(keys[e.key]) move[keys[e.key]]=false;
+const glass=new THREE.MeshStandardMaterial({
+ color:0x5fa9d1,metalness:.35,roughness:.15,
+ transparent:true,opacity:.8
 });
+const white=new THREE.MeshStandardMaterial({
+ color:0xe7edf4,roughness:.55
+});
+const green=new THREE.MeshStandardMaterial({color:0x176b38});
+const darkGreen=new THREE.MeshStandardMaterial({color:0x0b4829});
 
-document.getElementById('rotateBtn').onclick=()=>{
-  autoRotate=!autoRotate;
+function block(w,h,d,x,y,z,mat){
+ const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
+ m.position.set(x,y,z);
+ m.castShadow=true;m.receiveShadow=true;
+ scene.add(m);return m;
+}
+
+// Ground and campus lawn
+block(100,.5,100,0,-.4,0,new THREE.MeshStandardMaterial({color:0x477c43}));
+block(100,.15,100,0,-.12,0,new THREE.MeshStandardMaterial({color:0x9c9b91}));
+
+// Main building
+block(25,12,12,0,6,0,white);
+block(27,1,13,0,12.4,0,navy);
+block(27,.35,13,0,.25,0,gold);
+
+// Central entrance
+block(7,8,1,0,4.5,6.1,navy);
+block(4.5,6,.25,0,3.5,6.8,glass);
+block(5,.25,.4,0,6.7,6.95,gold);
+
+// Building wings
+block(9,15,11,-17,7.5,0,white);
+block(9,15,11,17,7.5,0,white);
+block(10,1,12,-17,15.2,0,navy);
+block(10,1,12,17,15.2,0,navy);
+
+// Roof details
+block(8,.6,7,0,13,0,gold);
+block(4,2,4,0,14,0,navy);
+
+// Windows on front
+for(let x=-20;x<=20;x+=4){
+ for(let y=3;y<=11;y+=3){
+  if(Math.abs(x)<3 && y<8) continue;
+  block(2,1.8,.18,x,y,6.08,glass);
+  block(2.15,.12,.25,x,y+1,6.08,gold);
+ }
+}
+
+// Side windows
+for(let x=-20;x<=20;x+=4){
+ for(let y=3;y<=11;y+=3){
+  block(.18,1.8,2,x,y,-5.58,glass);
+ }
+}
+
+// Institute name sign: front upper facade
+function makeSign(text,width,height){
+ const c=document.createElement('canvas');
+ c.width=1600;c.height=260;
+ const ctx=c.getContext('2d');
+ ctx.fillStyle='#071a35';
+ ctx.fillRect(0,0,c.width,c.height);
+ ctx.strokeStyle='#d4af37';ctx.lineWidth=12;
+ ctx.strokeRect(8,8,c.width-16,c.height-16);
+ ctx.textAlign='center';ctx.textBaseline='middle';
+ ctx.font='bold 105px Arial';
+ ctx.shadowColor='#ffd966';ctx.shadowBlur=18;
+ ctx.fillStyle='#f5d77a';
+ ctx.fillText(text,800,132);
+ const texture=new THREE.CanvasTexture(c);
+ texture.colorSpace=THREE.SRGBColorSpace;
+ const material=new THREE.MeshStandardMaterial({
+  map:texture,metalness:.45,roughness:.3
+ });
+ const mesh=new THREE.Mesh(
+  new THREE.BoxGeometry(width,height,.22),material
+ );
+ mesh.castShadow=true;
+ return mesh;
+}
+const mainSign=makeSign('SIGMA INSTITUTE OF EDUCATION',20,2.5);
+mainSign.position.set(0,10.2,6.35);
+scene.add(mainSign);
+
+// Main gate and gate pillars
+for(const x of [-13,13]){
+ block(1,6,1,x,3,19,gold);
+ block(2,1,2,x,6.1,19,navy);
+}
+block(26,.35,.5,0,5.8,19,navy);
+
+const gateSign=makeSign('SIGMA INSTITUTE OF EDUCATION',15,1.7);
+gateSign.position.set(0,7.3,19);
+scene.add(gateSign);
+
+// Gate road and pathway
+block(9,.18,27,0,.05,25,new THREE.MeshStandardMaterial({color:0x777d83}));
+block(5,.12,20,0,.14,8,new THREE.MeshStandardMaterial({color:0xc5c2b8}));
+
+// Library building
+block(11,6,9,-29,3,0,white);
+block(12,.6,10,-29,6.3,0,navy);
+block(8,2,.2,-29,4,4.6,glass);
+const librarySign=makeSign('LIBRARY',6,1.2);
+librarySign.position.set(-29,5.2,4.8);
+scene.add(librarySign);
+
+// Computer lab
+block(11,6,9,29,3,0,white);
+block(12,.6,10,29,6.3,0,navy);
+block(8,2,.2,29,4,4.6,glass);
+const labSign=makeSign('COMPUTER LAB',7,1.2);
+labSign.position.set(29,5.2,4.8);
+scene.add(labSign);
+
+// Fountain
+const water=new THREE.Mesh(
+ new THREE.CylinderGeometry(4,4,.45,48),
+ new THREE.MeshStandardMaterial({
+  color:0x42bce9,metalness:.6,roughness:.15
+ })
+);
+water.position.set(0,.45,-17);scene.add(water);
+const fountainBase=new THREE.Mesh(
+ new THREE.CylinderGeometry(4.5,4.8,.5,48),
+ white
+);
+fountainBase.position.set(0,.2,-17);scene.add(fountainBase);
+const jet=new THREE.Mesh(
+ new THREE.CylinderGeometry(.15,.35,3,16),
+ new THREE.MeshStandardMaterial({color:0x83dcff})
+);
+jet.position.set(0,2,-17);scene.add(jet);
+
+// Trees
+function tree(x,z){
+ const trunk=new THREE.Mesh(
+  new THREE.CylinderGeometry(.25,.4,2.5,10),
+  new THREE.MeshStandardMaterial({color:0x754522})
+ );
+ trunk.position.set(x,1.25,z);scene.add(trunk);
+ const leaves=new THREE.Mesh(
+  new THREE.SphereGeometry(1.7,16,12),green
+ );
+ leaves.position.set(x,3.5,z);
+ leaves.castShadow=true;scene.add(leaves);
+ const top=new THREE.Mesh(
+  new THREE.SphereGeometry(1.2,16,12),darkGreen
+ );
+ top.position.set(x+.4,4.3,z);scene.add(top);
+}
+for(let x=-38;x<=38;x+=8){
+ tree(x,13);tree(x,-25);
+}
+for(let z=-18;z<=20;z+=9){
+ tree(-39,z);tree(39,z);
+}
+
+// Garden lights
+for(let x=-25;x<=25;x+=10){
+ const pole=block(.15,4,.15,x,2,11,
+  new THREE.MeshStandardMaterial({color:0x303943}));
+ const lamp=new THREE.PointLight(0xffd98a,1,9);
+ lamp.position.set(x,4.3,11);scene.add(lamp);
+ block(.7,.25,.7,x,4.2,11,gold);
+}
+
+// Student character
+const student=new THREE.Group();
+const body=new THREE.Mesh(
+ new THREE.CylinderGeometry(.48,.55,1.5,16),
+ navy
+);
+body.position.y=1.25;student.add(body);
+const head=new THREE.Mesh(
+ new THREE.SphereGeometry(.42,20,16),
+ new THREE.MeshStandardMaterial({color:0xc88e65})
+);
+head.position.y=2.3;student.add(head);
+student.position.set(7,0,14);
+scene.add(student);
+
+// Campus tour movement
+let touring=false;
+let angle=0;
+window.tour=()=>{
+ touring=!touring;
+};
+window.resetView=()=>{
+ camera.position.set(24,19,30);
+ controls.target.set(0,4,0);
+ controls.update();
+};
+let night=false;
+window.toggleDay=()=>{
+ night=!night;
+ scene.background=new THREE.Color(night?0x07152e:0x91bce0);
+ scene.fog.color.set(night?0x07152e:0x91bce0);
+ sun.intensity=night?.35:3;
+ scene.traverse(o=>{
+  if(o.isPointLight)o.intensity=night?2:0;
+ });
 };
 
-document.getElementById('resetBtn').onclick=()=>{
-  angle=0;
-  character.position.set(0,0,5);
-};
-
-let dragging=false,lastX=0,lastY=0;
-
-container.addEventListener('pointerdown',e=>{
-  dragging=true;
-  lastX=e.clientX;
-  lastY=e.clientY;
-});
-
-window.addEventListener('pointerup',()=>{
-  dragging=false;
-});
-
-container.addEventListener('pointermove',e=>{
-  if(!dragging || autoRotate)return;
-  angle+=(e.clientX-lastX)*.005;
-  lastX=e.clientX;
-  lastY=e.clientY;
-});
-
-// Zoom with mouse wheel
-container.addEventListener('wheel',e=>{
-  camera.position.multiplyScalar(e.deltaY>0?1.06:.94);
-});
+function animate(){
+ requestAnimationFrame(animate);
+ controls.update();
+ if(touring){
+  angle+=.003;
+  camera.position.x=36*Math.sin(angle);
+  camera.position.z=36*Math.cos(angle);
+  camera.position.y=17+Math.sin(angle*2)*2;
+  controls.target.set(0,4,0);
+ }
+ renderer.render(scene,camera);
+}
+animate();
 
 window.addEventListener('resize',()=>{
-  if(!renderer)return;
-  camera.aspect=container.clientWidth/container.clientHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(container.clientWidth,container.clientHeight);
+ camera.aspect=window.innerWidth/window.innerHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(window.innerWidth,window.innerHeight);
 });
-
-try {
-  init();
-} catch(error) {
-  loading.innerText="3D Campus load nahi ho paya. Internet connection check karein.";
-  console.error(error);
-}
 </script>
-
 </body>
 </html>
